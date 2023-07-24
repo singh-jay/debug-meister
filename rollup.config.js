@@ -111,7 +111,7 @@ export default [
       {
         dir: 'dist/cjs',
         format: 'cjs',
-        sourcemap: true,
+        // sourcemap: true,
         inlineDynamicImports: true,
         globals: {
           react: 'React', // Specify the global variable name for React
@@ -120,7 +120,7 @@ export default [
       {
         dir: 'dist/esm',
         format: 'esm',
-        sourcemap: true,
+        // sourcemap: true,
         inlineDynamicImports: true,
         globals: {
           react: 'React', // Specify the global variable name for React
