@@ -84,6 +84,7 @@ const extensions = ['.js', '.ts', '.tsx', '.json'];
 
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import replace from '@rollup/plugin-replace';
 import {
   swc,
   defineRollupSwcOption,
@@ -104,6 +105,7 @@ import tailwindConfig from './tailwind.config.js';
 import image from '@rollup/plugin-image';
 
 import packageJson from './package.json' assert { type: 'json' };
+const __prod__ = process.env.NODE_ENV === 'production';
 
 export default [
   {
@@ -112,7 +114,7 @@ export default [
       {
         dir: 'dist/cjs',
         format: 'cjs',
-        sourcemap: true,
+        // sourcemap: true,
         inlineDynamicImports: true,
         globals: {
           react: 'React', // Specify the global variable name for React
@@ -121,7 +123,7 @@ export default [
       {
         dir: 'dist/esm',
         format: 'esm',
-        sourcemap: true,
+        // sourcemap: true,
         inlineDynamicImports: true,
         globals: {
           react: 'React', // Specify the global variable name for React
@@ -130,6 +132,17 @@ export default [
     ],
     external: Object.keys(packageJson.peerDependencies || {}),
     plugins: [
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production'),
+        preventAssignment: true,
+      }),
+      nodeResolve({
+        extensions,
+      }),
+      commonjs({
+        exclude: 'src/**',
+      }),
+      nodePolyfills(),
       swc(
         defineRollupSwcOption({
           // All options are optional
@@ -137,9 +150,8 @@ export default [
           exclude: /node_modules/, // default
           // tsconfig: "tsconfig.json", // default
           // And add your swc configuration here!
-          // "filename" will be ignored since it is handled by rollup
           minify: true,
-          sourceMaps: 'inline',
+          sourceMaps: true,
           inlineSourcesContent: true,
           jsc: {
             parser: {
@@ -158,11 +170,7 @@ export default [
             transform: {
               react: {
                 runtime: 'automatic',
-                pragma: 'React.createElement',
-                pragmaFrag: 'React.Fragment',
-                throwIfNamespace: true,
-                development: false,
-                useBuiltins: false,
+                development: !__prod__,
               },
             },
             target: 'es5',
@@ -174,11 +182,6 @@ export default [
         }),
       ),
       swcPreserveDirectives(),
-      nodeResolve({
-        extensions,
-      }),
-      nodePolyfills(),
-      commonjs(),
       // typescript({ tsconfig: "./tsconfig.json" }),
       // postcss(),
       postcss({
