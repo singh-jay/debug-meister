@@ -1,5 +1,5 @@
 {
-  "name": "debug-meister",
+  "name": "@singh-jay/debug-meister",
   "version": "0.1.0",
   "private": false,
   "type": "module",
@@ -56,7 +56,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/singh-jay/debug-meister.git"
+    "url": "https://github.com/singh-jay/debug-meister.git"
   },
   "keywords": [
     "react",
