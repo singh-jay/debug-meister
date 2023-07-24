@@ -92,12 +92,14 @@ import {
 import { visualizer } from 'rollup-plugin-visualizer';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
+import nodePolyfills from 'rollup-plugin-polyfill-node';
 
 // To handle css files
 import postcss from 'rollup-plugin-postcss';
+import autoprefixer from 'autoprefixer';
+import tailwindcss from 'tailwindcss';
 
-import terser from '@rollup/plugin-terser';
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import tailwindConfig from './tailwind.config.js';
 import image from '@rollup/plugin-image';
 
 import packageJson from './package.json' assert { type: 'json' };
@@ -110,9 +112,8 @@ export default [
         file: packageJson.main,
         format: 'cjs',
         // sourcemap: true,
-        inlineDynamicImports: true,
         globals: {
-          React: 'React', // Specify the global variable name for React
+          react: 'React', // Specify the global variable name for React
         },
       },
       {
@@ -121,7 +122,7 @@ export default [
         // sourcemap: true,
         inlineDynamicImports: true,
         globals: {
-          React: 'React', // Specify the global variable name for React
+          react: 'React', // Specify the global variable name for React
         },
       },
     ],
@@ -135,6 +136,9 @@ export default [
           // tsconfig: "tsconfig.json", // default
           // And add your swc configuration here!
           // "filename" will be ignored since it is handled by rollup
+          minify: true,
+          sourceMaps: 'inline',
+          inlineSourcesContent: true,
           jsc: {
             parser: {
               syntax: 'ecmascript',
@@ -156,20 +160,28 @@ export default [
             // Requires v1.2.50 or upper and requires target to be es2016 or upper.
             keepClassNames: true,
           },
-          minify: false,
-          sourceMaps: 'inline',
-          inlineSourcesContent: true,
         }),
       ),
       preserveUseDirective(),
       nodeResolve({
         extensions,
       }),
+      nodePolyfills(),
       commonjs(),
       // typescript({ tsconfig: "./tsconfig.json" }),
-      postcss(),
+      postcss({
+        config: {
+          path: './postcss.config.js',
+        },
+        minimize: true,
+        inject: {
+          insertAt: 'top',
+        },
+        extensions: ['.css', '.module.css'],
+        plugins: [autoprefixer(), tailwindcss(tailwindConfig)],
+      }),
 
-      terser(),
+      // terser(),
       image(),
       visualizer(),
     ],
