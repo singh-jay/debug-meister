@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './styles/globals.css';
 // import { NetworkProvider } from './context/NetworkProvider';
 
-const NetworkProvider = () => {
+const NetworkProvider = ({ children }) => {
   const [count, setCount] = useState(0);
 
   return (
@@ -10,6 +10,7 @@ const NetworkProvider = () => {
       <button onClick={() => setCount((c) => c + 1)}>+</button>
       {count}
       <button onClick={() => setCount((c) => c - 1)}>-</button>
+      {children}
     </div>
   );
 };
