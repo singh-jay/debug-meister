@@ -150,7 +150,7 @@ export default [
           exclude: /node_modules/, // default
           // tsconfig: "tsconfig.json", // default
           // And add your swc configuration here!
-          minify: true,
+          minify: false,
           sourceMaps: true,
           inlineSourcesContent: true,
           jsc: {

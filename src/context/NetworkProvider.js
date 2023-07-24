@@ -15,7 +15,7 @@ const Child = ({ children }) => (
 const WrappedComponent = withNetworkLogger(Child);
 
 export const NetworkProvider = ({ children }) => {
-  const [mounted, setMounted] = useState(second);
+  const [mounted, setMounted] = useState(false);
   const [networkRequests, setNetworkRequests] = useState([]);
 
   const addNetworkRequest = useCallback((request) => {
