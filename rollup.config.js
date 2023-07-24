@@ -155,7 +155,16 @@ export default [
               topLevelAwait: false,
               importMeta: false,
             },
-            transform: null,
+            transform: {
+              react: {
+                runtime: 'automatic',
+                pragma: 'React.createElement',
+                pragmaFrag: 'React.Fragment',
+                throwIfNamespace: true,
+                development: false,
+                useBuiltins: false,
+              },
+            },
             target: 'es5',
             loose: false,
             externalHelpers: false,
