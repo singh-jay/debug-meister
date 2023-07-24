@@ -2,31 +2,31 @@ import crossIcon from '../icons/svg/cross.svg';
 import settingsIcon from '../icons/svg/settings.svg';
 import React, { Suspense, useEffect, useState } from 'react';
 
-// const Storage = lazy(() => import("./Storage"));
+const Storage = lazy(() => import('./Storage'));
 // import Storage from "./Storage";
 
 function DebugOverlay() {
   const [mounted, setMounted] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
-  const [storageComponent, setStorageComponent] = useState(null);
+  // const [storageComponent, setStorageComponent] = useState(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const loadStorageComponent = async () => {
-    console.log('window', window);
-    if (!storageComponent) {
-      const { default: StorageComponent } = await import('./Storage');
-      setStorageComponent(<StorageComponent />);
-    }
-    setOpenPopup(true);
-  };
+  // const loadStorageComponent = async () => {
+  //   console.log('window', window);
+  //   if (!storageComponent) {
+  //     const { default: StorageComponent } = await import('./Storage');
+  //     setStorageComponent(<StorageComponent />);
+  //   }
+  //   setOpenPopup(true);
+  // };
 
-  if (!mounted) return <React.Fragment></React.Fragment>;
+  if (!mounted) return <></>;
 
   return openPopup ? (
-    <Suspense fallback={<React.Fragment></React.Fragment>}>
+    <Suspense fallback={<></>}>
       <div className="fixed bottom-0 max-h-mobile sm:max-h-[calc(100vh-theme(space.8))] overflow-auto no-scrollbar right-0 w-mobile sm:w-1/2 sm:m-4 bg-white shadow-xl rounded-lg z-50">
         <div className="sticky top-0 z-10 text-center bg-white/50 backdrop-blur py-4">
           <div className="relative">
@@ -45,7 +45,9 @@ function DebugOverlay() {
             />
           </div>
         </div>
-        <div className="px-4 pb-4">{storageComponent}</div>
+        <div className="px-4 pb-4">
+          <Storage />
+        </div>
       </div>
     </Suspense>
   ) : (
@@ -55,7 +57,7 @@ function DebugOverlay() {
         width={24}
         height={24}
         alt="Open popup icon"
-        onClick={loadStorageComponent}
+        onClick={() => setOpenPopup(true)}
       />
     </div>
   );

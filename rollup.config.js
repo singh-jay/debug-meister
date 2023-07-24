@@ -1,9 +1,9 @@
 // import nodeResolve from "@rollup/plugin-node-resolve";
-// import babel from "@rollup/plugin-babel";
+import babel from '@rollup/plugin-babel';
 // import replace from "@rollup/plugin-replace";
 // import commonjs from "@rollup/plugin-commonjs";
 // import { terser } from "rollup-plugin-terser";
-// import dynamicImportVars from "@rollup/plugin-dynamic-import-vars";
+import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 // import url from "@rollup/plugin-url";
 // import svgr from "@svgr/rollup";
 // import css from "rollup-plugin-import-css";
@@ -114,8 +114,9 @@ export default [
       {
         dir: 'dist/cjs',
         format: 'cjs',
-        // sourcemap: true,
-        inlineDynamicImports: true,
+        sourcemap: true,
+        // inlineDynamicImports: true,
+        exports: 'named',
         globals: {
           react: 'React', // Specify the global variable name for React
         },
@@ -123,8 +124,10 @@ export default [
       {
         dir: 'dist/esm',
         format: 'esm',
-        // sourcemap: true,
-        inlineDynamicImports: true,
+        sourcemap: true,
+        // inlineDynamicImports: true,
+        // dynamicImport: true,
+        exports: 'named',
         globals: {
           react: 'React', // Specify the global variable name for React
         },
@@ -182,6 +185,15 @@ export default [
         }),
       ),
       swcPreserveDirectives(),
+      // babel({
+      //   include: 'src/**/*',
+      //   exclude: '**/node_modules/**',
+      //   babelHelpers: 'runtime',
+      //   extensions,
+      // }),
+      dynamicImportVars({
+        include: ['*.js'],
+      }),
       // typescript({ tsconfig: "./tsconfig.json" }),
       // postcss(),
       postcss({
