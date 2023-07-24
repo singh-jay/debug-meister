@@ -109,17 +109,18 @@ export default [
     input: './src/index.js',
     output: [
       {
-        file: packageJson.main,
+        dir: 'dist/cjs',
         format: 'cjs',
-        // sourcemap: true,
+        sourcemap: true,
+        inlineDynamicImports: true,
         globals: {
           react: 'React', // Specify the global variable name for React
         },
       },
       {
-        file: packageJson.module,
+        dir: 'dist/esm',
         format: 'esm',
-        // sourcemap: true,
+        sourcemap: true,
         inlineDynamicImports: true,
         globals: {
           react: 'React', // Specify the global variable name for React
@@ -169,6 +170,7 @@ export default [
       nodePolyfills(),
       commonjs(),
       // typescript({ tsconfig: "./tsconfig.json" }),
+      // postcss(),
       postcss({
         config: {
           path: './postcss.config.js',
