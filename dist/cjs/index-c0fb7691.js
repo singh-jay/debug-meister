@@ -593,8 +593,8 @@ function _unsupported_iterable_to_array$1(o, minLen) {
     if (n === "Map" || n === "Set") return Array.from(n);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array$1(o, minLen);
 }
-var Storage = lazy(function() {
-    return Promise.resolve().then(function () { return require('./Storage-90f945ec.js'); });
+var Storage = /*#__PURE__*/ React.lazy(function() {
+    return Promise.resolve().then(function () { return require('./Storage-866b6eb6.js'); });
 });
 // import Storage from "./Storage";
 function DebugOverlay() {
@@ -763,4 +763,4 @@ var NetworkProvider = function(param) {
 exports.NetworkProvider = NetworkProvider;
 exports.jsxRuntimeExports = jsxRuntimeExports;
 exports.useNetworkContext = useNetworkContext;
-//# sourceMappingURL=index-f4c233e0.js.map
+//# sourceMappingURL=index-c0fb7691.js.map

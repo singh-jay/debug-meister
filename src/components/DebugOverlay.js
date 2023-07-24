@@ -1,6 +1,6 @@
 import crossIcon from '../icons/svg/cross.svg';
 import settingsIcon from '../icons/svg/settings.svg';
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 
 const Storage = lazy(() => import('./Storage'));
 // import Storage from "./Storage";

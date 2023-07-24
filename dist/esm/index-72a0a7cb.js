@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext, useState, useCallback, useEffect, Suspense } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect, Suspense, lazy } from 'react';
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
@@ -591,8 +591,8 @@ function _unsupported_iterable_to_array$1(o, minLen) {
     if (n === "Map" || n === "Set") return Array.from(n);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array$1(o, minLen);
 }
-var Storage = lazy(function() {
-    return import('./Storage-94e388e7.js');
+var Storage = /*#__PURE__*/ lazy(function() {
+    return import('./Storage-62d03546.js');
 });
 // import Storage from "./Storage";
 function DebugOverlay() {
@@ -759,4 +759,4 @@ var NetworkProvider = function(param) {
 };
 
 export { NetworkProvider as N, jsxRuntimeExports as j, useNetworkContext as u };
-//# sourceMappingURL=index-c8d43d17.js.map
+//# sourceMappingURL=index-72a0a7cb.js.map
