@@ -89,6 +89,7 @@ import {
   defineRollupSwcOption,
   preserveUseDirective,
 } from 'rollup-plugin-swc3';
+import swcPreserveDirectives from 'rollup-swc-preserve-directives';
 import { visualizer } from 'rollup-plugin-visualizer';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
@@ -111,7 +112,7 @@ export default [
       {
         dir: 'dist/cjs',
         format: 'cjs',
-        // sourcemap: true,
+        sourcemap: true,
         inlineDynamicImports: true,
         globals: {
           react: 'React', // Specify the global variable name for React
@@ -120,7 +121,7 @@ export default [
       {
         dir: 'dist/esm',
         format: 'esm',
-        // sourcemap: true,
+        sourcemap: true,
         inlineDynamicImports: true,
         globals: {
           react: 'React', // Specify the global variable name for React
@@ -163,7 +164,7 @@ export default [
           },
         }),
       ),
-      preserveUseDirective(),
+      swcPreserveDirectives(),
       nodeResolve({
         extensions,
       }),
