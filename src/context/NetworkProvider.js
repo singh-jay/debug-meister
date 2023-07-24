@@ -31,7 +31,7 @@ export const NetworkProvider = ({ children }) => {
 
   useEffect(() => setMounted(true), []);
 
-  if (!mounted) return null;
+  if (!mounted || typeof window === 'undefined') return children;
 
   return (
     <NetworkContext.Provider
