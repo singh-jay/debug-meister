@@ -1,7 +1,7 @@
 const { NODE_ENV, BABEL_ENV } = process.env;
 const cjs = NODE_ENV === 'test' || BABEL_ENV === 'commonjs';
 import packageJson from './package.json' assert { type: 'json' };
-console.log('cjs', cjs);
+
 const config = {
   presets: [
     [

@@ -594,7 +594,7 @@ function _unsupported_iterable_to_array$1(o, minLen) {
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array$1(o, minLen);
 }
 var Storage = /*#__PURE__*/ React.lazy(function() {
-    return Promise.resolve().then(function () { return require('./Storage-600b92e2.js'); });
+    return Promise.resolve().then(function () { return require('./Storage-6151f122.js'); });
 });
 // import Storage from "./Storage";
 function DebugOverlay() {
@@ -760,11 +760,7 @@ var NetworkProvider = function(param) {
     });
 };
 
-if (typeof window.global === "undefined") {
-    window.global = window;
-}
-
 exports.NetworkProvider = NetworkProvider;
 exports.jsxRuntimeExports = jsxRuntimeExports;
 exports.useNetworkContext = useNetworkContext;
-//# sourceMappingURL=index-c51b4674.js.map
+//# sourceMappingURL=index-dbb33918.js.map

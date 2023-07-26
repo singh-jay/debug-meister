@@ -592,7 +592,7 @@ function _unsupported_iterable_to_array$1(o, minLen) {
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array$1(o, minLen);
 }
 var Storage = /*#__PURE__*/ lazy(function() {
-    return import('./Storage-15004aff.js');
+    return import('./Storage-16ae8687.js');
 });
 // import Storage from "./Storage";
 function DebugOverlay() {
@@ -758,9 +758,5 @@ var NetworkProvider = function(param) {
     });
 };
 
-if (typeof window.global === "undefined") {
-    window.global = window;
-}
-
 export { NetworkProvider as N, jsxRuntimeExports as j, useNetworkContext as u };
-//# sourceMappingURL=index-13fc4a27.js.map
+//# sourceMappingURL=index-c30b8842.js.map
