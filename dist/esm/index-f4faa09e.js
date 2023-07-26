@@ -53,9 +53,9 @@ function q(c,a,g){var b,d={},e=null,h=null;void 0!==g&&(e=""+g);void 0!==a.key&&
 
 var jsxRuntimeExports = jsxRuntime.exports;
 
-var NetworkContext = /*#__PURE__*/ createContext({});
-var useNetworkContext = function() {
-    return useContext(NetworkContext);
+var DebugContext = /*#__PURE__*/ createContext({});
+var useDebugContext = function() {
+    return useContext(DebugContext);
 };
 
 function _array_like_to_array$2(arr, len) {
@@ -302,7 +302,7 @@ function _ts_generator(thisArg, body) {
 var withNetworkLogger = function(WrappedComponent) {
     var NetworkLogger = function(props) {
         var _useState = _sliced_to_array$2(useState(new Map()), 2), requests = _useState[0], setRequests = _useState[1];
-        var addNetworkRequest = useNetworkContext().addNetworkRequest;
+        var addNetworkRequest = useDebugContext().addNetworkRequest;
         var handleNetworkResponse = useCallback(function() {
             var _ref = _async_to_generator(function(response) {
                 var request, _requests_keys_next_value, url, method, body, startTime, timeElapsed, responseData, contentType, _tmp, _tmp1, error;
@@ -592,7 +592,7 @@ function _unsupported_iterable_to_array$1(o, minLen) {
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array$1(o, minLen);
 }
 var Storage = /*#__PURE__*/ lazy(function() {
-    return import('./Storage-16ae8687.js');
+    return import('./Storage-b6f2ad38.js');
 });
 // import Storage from "./Storage";
 function DebugOverlay() {
@@ -728,7 +728,7 @@ var Child = function(param) {
     });
 };
 var WrappedComponent = withNetworkLogger(Child);
-var NetworkProvider = function(param) {
+var DebugProvider = function(param) {
     var children = param.children;
     var _useState = _sliced_to_array(useState(false), 2), mounted = _useState[0], setMounted = _useState[1];
     var _useState1 = _sliced_to_array(useState([]), 2), networkRequests = _useState1[0], setNetworkRequests = _useState1[1];
@@ -745,8 +745,8 @@ var NetworkProvider = function(param) {
     useEffect(function() {
         return setMounted(true);
     }, []);
-    if (!mounted || typeof window === "undefined") return children;
-    return /*#__PURE__*/ jsxRuntimeExports.jsx(NetworkContext.Provider, {
+    if (!mounted) return children;
+    return /*#__PURE__*/ jsxRuntimeExports.jsx(DebugContext.Provider, {
         value: {
             networkRequests: networkRequests,
             addNetworkRequest: addNetworkRequest,
@@ -758,5 +758,5 @@ var NetworkProvider = function(param) {
     });
 };
 
-export { NetworkProvider as N, jsxRuntimeExports as j, useNetworkContext as u };
-//# sourceMappingURL=index-c30b8842.js.map
+export { DebugProvider as D, jsxRuntimeExports as j, useDebugContext as u };
+//# sourceMappingURL=index-f4faa09e.js.map

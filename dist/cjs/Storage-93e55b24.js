@@ -1,5 +1,7 @@
-import { j as jsxRuntimeExports, u as useNetworkContext } from './index-c30b8842.js';
-import React, { useSyncExternalStore, useRef, useEffect, useState, useDeferredValue, useMemo } from 'react';
+'use strict';
+
+var index = require('./index-b69eb2a4.js');
+var React = require('react');
 
 var img$4 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-trash-2'%3e%3cpath d='M3 6h18'%3e%3c/path%3e%3cpath d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6'%3e%3c/path%3e%3cpath d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2'%3e%3c/path%3e%3cline x1='10' x2='10' y1='11' y2='17'%3e%3c/line%3e%3cline x1='14' x2='14' y1='11' y2='17'%3e%3c/line%3e%3c/svg%3e";
 
@@ -20,7 +22,7 @@ function getSnapshot() {
     return ((_window = window) === null || _window === void 0 ? void 0 : _window.innerWidth) < 640 ? true : false;
 }
 function useIsMobile() {
-    return useSyncExternalStore(subscribe, getSnapshot);
+    return React.useSyncExternalStore(subscribe, getSnapshot);
 }
 
 function t(t){return null===t?"null":typeof t}function e(t){return !!t&&"object"==typeof t}function r(t){if(void 0===t)return "";if(null===t)return "Object";if("object"==typeof t&&!t.constructor)return "Object";var e=/function ([^(]*)/.exec(t.constructor.toString());return e&&e.length>1?e[1]:""}function n(t,e,r){return "null"===t||"undefined"===t?t:("string"!==t&&"stringifiable"!==t||(r='"'+r.replace(/"/g,'\\"')+'"'),"function"===t?e.toString().replace(/[\r\n]/g,"").replace(/\{.*\}/,"")+"{…}":r)}function o(o){var i="";return e(o)?(i=r(o),Array.isArray(o)&&(i+="["+o.length+"]")):i=n(t(o),o,o),i}function i(t){return "json-formatter-"+t}function s(t,e,r){var n=document.createElement(t);return e&&n.classList.add(i(e)),void 0!==r&&(r instanceof Node?n.appendChild(r):n.appendChild(document.createTextNode(String(r)))),n}!function(t){if(t&&"undefined"!=typeof window){var e=document.createElement("style");e.setAttribute("media","screen"),e.innerHTML=t,document.head.appendChild(e);}}('.json-formatter-row {\n  font-family: monospace;\n}\n.json-formatter-row,\n.json-formatter-row a,\n.json-formatter-row a:hover {\n  color: black;\n  text-decoration: none;\n}\n.json-formatter-row .json-formatter-row {\n  margin-left: 1rem;\n}\n.json-formatter-row .json-formatter-children.json-formatter-empty {\n  opacity: 0.5;\n  margin-left: 1rem;\n}\n.json-formatter-row .json-formatter-children.json-formatter-empty:after {\n  display: none;\n}\n.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {\n  content: "No properties";\n}\n.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {\n  content: "[]";\n}\n.json-formatter-row .json-formatter-string,\n.json-formatter-row .json-formatter-stringifiable {\n  color: green;\n  white-space: pre;\n  word-wrap: break-word;\n}\n.json-formatter-row .json-formatter-number {\n  color: blue;\n}\n.json-formatter-row .json-formatter-boolean {\n  color: red;\n}\n.json-formatter-row .json-formatter-null {\n  color: #855A00;\n}\n.json-formatter-row .json-formatter-undefined {\n  color: #ca0b69;\n}\n.json-formatter-row .json-formatter-function {\n  color: #FF20ED;\n}\n.json-formatter-row .json-formatter-date {\n  background-color: rgba(0, 0, 0, 0.05);\n}\n.json-formatter-row .json-formatter-url {\n  text-decoration: underline;\n  color: blue;\n  cursor: pointer;\n}\n.json-formatter-row .json-formatter-bracket {\n  color: blue;\n}\n.json-formatter-row .json-formatter-key {\n  color: #00008B;\n  padding-right: 0.2rem;\n}\n.json-formatter-row .json-formatter-toggler-link {\n  cursor: pointer;\n}\n.json-formatter-row .json-formatter-toggler {\n  line-height: 1.2rem;\n  font-size: 0.7rem;\n  vertical-align: middle;\n  opacity: 0.6;\n  cursor: pointer;\n  padding-right: 0.2rem;\n}\n.json-formatter-row .json-formatter-toggler:after {\n  display: inline-block;\n  transition: transform 100ms ease-in;\n  content: "►";\n}\n.json-formatter-row > a > .json-formatter-preview-text {\n  opacity: 0;\n  transition: opacity 0.15s ease-in;\n  font-style: italic;\n}\n.json-formatter-row:hover > a > .json-formatter-preview-text {\n  opacity: 0.6;\n}\n.json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {\n  transform: rotate(90deg);\n}\n.json-formatter-row.json-formatter-open > .json-formatter-children:after {\n  display: inline-block;\n}\n.json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {\n  display: none;\n}\n.json-formatter-row.json-formatter-open.json-formatter-empty:after {\n  display: block;\n}\n.json-formatter-dark.json-formatter-row {\n  font-family: monospace;\n}\n.json-formatter-dark.json-formatter-row,\n.json-formatter-dark.json-formatter-row a,\n.json-formatter-dark.json-formatter-row a:hover {\n  color: white;\n  text-decoration: none;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-row {\n  margin-left: 1rem;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty {\n  opacity: 0.5;\n  margin-left: 1rem;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty:after {\n  display: none;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {\n  content: "No properties";\n}\n.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {\n  content: "[]";\n}\n.json-formatter-dark.json-formatter-row .json-formatter-string,\n.json-formatter-dark.json-formatter-row .json-formatter-stringifiable {\n  color: #31F031;\n  white-space: pre;\n  word-wrap: break-word;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-number {\n  color: #66C2FF;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-boolean {\n  color: #EC4242;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-null {\n  color: #EEC97D;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-undefined {\n  color: #ef8fbe;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-function {\n  color: #FD48CB;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-date {\n  background-color: rgba(255, 255, 255, 0.05);\n}\n.json-formatter-dark.json-formatter-row .json-formatter-url {\n  text-decoration: underline;\n  color: #027BFF;\n  cursor: pointer;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-bracket {\n  color: #9494FF;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-key {\n  color: #23A0DB;\n  padding-right: 0.2rem;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-toggler-link {\n  cursor: pointer;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-toggler {\n  line-height: 1.2rem;\n  font-size: 0.7rem;\n  vertical-align: middle;\n  opacity: 0.6;\n  cursor: pointer;\n  padding-right: 0.2rem;\n}\n.json-formatter-dark.json-formatter-row .json-formatter-toggler:after {\n  display: inline-block;\n  transition: transform 100ms ease-in;\n  content: "►";\n}\n.json-formatter-dark.json-formatter-row > a > .json-formatter-preview-text {\n  opacity: 0;\n  transition: opacity 0.15s ease-in;\n  font-style: italic;\n}\n.json-formatter-dark.json-formatter-row:hover > a > .json-formatter-preview-text {\n  opacity: 0.6;\n}\n.json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {\n  transform: rotate(90deg);\n}\n.json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-children:after {\n  display: inline-block;\n}\n.json-formatter-dark.json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {\n  display: none;\n}\n.json-formatter-dark.json-formatter-row.json-formatter-open.json-formatter-empty:after {\n  display: block;\n}\n');var a=/(^\d{1,4}[\.|\\/|-]\d{1,2}[\.|\\/|-]\d{1,4})(\s*(?:0?[1-9]:[0-5]|1(?=[012])\d:[0-5])\d\s*[ap]m)?$/,f=/\d{2}:\d{2}:\d{2} GMT-\d{4}/,m=/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/,l=window.requestAnimationFrame||function(t){return t(),0},d={hoverPreviewEnabled:!1,hoverPreviewArrayCount:100,hoverPreviewFieldCount:5,animateOpen:!0,animateClose:!0,theme:null,useToJSON:!0,sortPropertiesBy:null},c=function(){function c(t,e,r,n){void 0===e&&(e=1),void 0===r&&(r=d),this.json=t,this.open=e,this.config=r,this.key=n,this._isOpen=null,void 0===this.config.hoverPreviewEnabled&&(this.config.hoverPreviewEnabled=d.hoverPreviewEnabled),void 0===this.config.hoverPreviewArrayCount&&(this.config.hoverPreviewArrayCount=d.hoverPreviewArrayCount),void 0===this.config.hoverPreviewFieldCount&&(this.config.hoverPreviewFieldCount=d.hoverPreviewFieldCount),void 0===this.config.useToJSON&&(this.config.useToJSON=d.useToJSON),""===this.key&&(this.key='""');}return Object.defineProperty(c.prototype,"isOpen",{get:function(){return null!==this._isOpen?this._isOpen:this.open>0},set:function(t){this._isOpen=t;},enumerable:!0,configurable:!0}),Object.defineProperty(c.prototype,"isDate",{get:function(){return this.json instanceof Date||"string"===this.type&&(a.test(this.json)||m.test(this.json)||f.test(this.json))},enumerable:!0,configurable:!0}),Object.defineProperty(c.prototype,"isUrl",{get:function(){return "string"===this.type&&0===this.json.indexOf("http")},enumerable:!0,configurable:!0}),Object.defineProperty(c.prototype,"isArray",{get:function(){return Array.isArray(this.json)},enumerable:!0,configurable:!0}),Object.defineProperty(c.prototype,"isObject",{get:function(){return e(this.json)},enumerable:!0,configurable:!0}),Object.defineProperty(c.prototype,"isEmptyObject",{get:function(){return !this.keys.length&&!this.isArray},enumerable:!0,configurable:!0}),Object.defineProperty(c.prototype,"isEmpty",{get:function(){return this.isEmptyObject||this.keys&&!this.keys.length&&this.isArray},enumerable:!0,configurable:!0}),Object.defineProperty(c.prototype,"useToJSON",{get:function(){return this.config.useToJSON&&"stringifiable"===this.type},enumerable:!0,configurable:!0}),Object.defineProperty(c.prototype,"hasKey",{get:function(){return void 0!==this.key},enumerable:!0,configurable:!0}),Object.defineProperty(c.prototype,"constructorName",{get:function(){return r(this.json)},enumerable:!0,configurable:!0}),Object.defineProperty(c.prototype,"type",{get:function(){return this.config.useToJSON&&this.json&&this.json.toJSON?"stringifiable":t(this.json)},enumerable:!0,configurable:!0}),Object.defineProperty(c.prototype,"keys",{get:function(){if(this.isObject){var t=Object.keys(this.json);return !this.isArray&&this.config.sortPropertiesBy?t.sort(this.config.sortPropertiesBy):t}return []},enumerable:!0,configurable:!0}),c.prototype.toggleOpen=function(){this.isOpen=!this.isOpen,this.element&&(this.isOpen?this.appendChildren(this.config.animateOpen):this.removeChildren(this.config.animateClose),this.element.classList.toggle(i("open")));},c.prototype.openAtDepth=function(t){void 0===t&&(t=1),t<0||(this.open=t,this.isOpen=0!==t,this.element&&(this.removeChildren(!1),0===t?this.element.classList.remove(i("open")):(this.appendChildren(this.config.animateOpen),this.element.classList.add(i("open")))));},c.prototype.getInlinepreview=function(){var t=this;if(this.isArray)return this.json.length>this.config.hoverPreviewArrayCount?"Array["+this.json.length+"]":"["+this.json.map(o).join(", ")+"]";var e=this.keys,r=e.slice(0,this.config.hoverPreviewFieldCount).map((function(e){return e+":"+o(t.json[e])})),n=e.length>=this.config.hoverPreviewFieldCount?"…":"";return "{"+r.join(", ")+n+"}"},c.prototype.render=function(){this.element=s("div","row");var t=this.isObject?s("a","toggler-link"):s("span");if(this.isObject&&!this.useToJSON&&t.appendChild(s("span","toggler")),this.hasKey&&t.appendChild(s("span","key",this.key+":")),this.isObject&&!this.useToJSON){var e=s("span","value"),r=s("span"),o=s("span","constructor-name",this.constructorName);if(r.appendChild(o),this.isArray){var a=s("span");a.appendChild(s("span","bracket","[")),a.appendChild(s("span","number",this.json.length)),a.appendChild(s("span","bracket","]")),r.appendChild(a);}e.appendChild(r),t.appendChild(e);}else {(e=this.isUrl?s("a"):s("span")).classList.add(i(this.type)),this.isDate&&e.classList.add(i("date")),this.isUrl&&(e.classList.add(i("url")),e.setAttribute("href",this.json));var f=n(this.type,this.json,this.useToJSON?this.json.toJSON():this.json);e.appendChild(document.createTextNode(f)),t.appendChild(e);}if(this.isObject&&this.config.hoverPreviewEnabled){var m=s("span","preview-text");m.appendChild(document.createTextNode(this.getInlinepreview())),t.appendChild(m);}var l=s("div","children");return this.isObject&&l.classList.add(i("object")),this.isArray&&l.classList.add(i("array")),this.isEmpty&&l.classList.add(i("empty")),this.config&&this.config.theme&&this.element.classList.add(i(this.config.theme)),this.isOpen&&this.element.classList.add(i("open")),this.element.appendChild(t),this.element.appendChild(l),this.isObject&&this.isOpen&&this.appendChildren(),this.isObject&&!this.useToJSON&&t.addEventListener("click",this.toggleOpen.bind(this)),this.element},c.prototype.appendChildren=function(t){var e=this;void 0===t&&(t=!1);var r=this.element.querySelector("div."+i("children"));if(r&&!this.isEmpty)if(t){var n=0,o=function(){var t=e.keys[n],i=new c(e.json[t],e.open-1,e.config,t);r.appendChild(i.render()),(n+=1)<e.keys.length&&(n>10?o():l(o));};l(o);}else this.keys.forEach((function(t){var n=new c(e.json[t],e.open-1,e.config,t);r.appendChild(n.render());}));},c.prototype.removeChildren=function(t){void 0===t&&(t=!1);var e=this.element.querySelector("div."+i("children"));if(t){var r=0,n=function(){e&&e.children.length&&(e.removeChild(e.children[0]),(r+=1)>10?n():l(n));};l(n);}else e&&(e.innerHTML="");},c}();
@@ -37,8 +39,8 @@ var parseJSONValue = function(value) {
 };
 var TableRow = function(param) {
     var value = param.value, _param_overflowAllowed = param.overflowAllowed, overflowAllowed = _param_overflowAllowed === void 0 ? true : _param_overflowAllowed, _param_parseJSON = param.parseJSON, parseJSON = _param_parseJSON === void 0 ? true : _param_parseJSON, _param_open = param.open, open = _param_open === void 0 ? 0 : _param_open;
-    var renderRef = useRef(null);
-    useEffect(function() {
+    var renderRef = React.useRef(null);
+    React.useEffect(function() {
         if (renderRef.current) {
             var formatter = new c(parseJSONValue(value, parseJSON), open);
             var formattedElem = formatter.render();
@@ -50,7 +52,7 @@ var TableRow = function(param) {
         parseJSON,
         open
     ]);
-    return /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+    return /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
         ref: renderRef,
         className: overflowAllowed ? "overflow-x-auto no-scrollbar whitespace-nowrap" : ""
     });
@@ -105,7 +107,7 @@ function _unsupported_iterable_to_array$4(o, minLen) {
 }
 var EditableInput = function(param) {
     var value = param.value, onChange = param.onChange, onBlur = param.onBlur;
-    return /*#__PURE__*/ jsxRuntimeExports.jsx("input", {
+    return /*#__PURE__*/ index.jsxRuntimeExports.jsx("input", {
         type: "text",
         value: value,
         onChange: onChange,
@@ -115,14 +117,14 @@ var EditableInput = function(param) {
 };
 var Table = function(param) {
     var data = param.data, storageType = param.storageType, handleAddItem = param.handleAddItem, handleDeleteItem = param.handleDeleteItem, copyContent = param.copyContent;
-    var _useState = _sliced_to_array$4(useState(""), 2), editedIndex = _useState[0], setEditedIndex = _useState[1];
-    var _useState1 = _sliced_to_array$4(useState(""), 2), editedValue = _useState1[0], setEditedValue = _useState1[1];
-    var _useState2 = _sliced_to_array$4(useState(""), 2), showActionButtons = _useState2[0], setShowActionButtons = _useState2[1];
-    var _useState3 = _sliced_to_array$4(useState(true), 2); _useState3[0]; _useState3[1];
-    var _useState4 = _sliced_to_array$4(useState(false), 2), mounted = _useState4[0], setMounted = _useState4[1];
+    var _useState = _sliced_to_array$4(React.useState(""), 2), editedIndex = _useState[0], setEditedIndex = _useState[1];
+    var _useState1 = _sliced_to_array$4(React.useState(""), 2), editedValue = _useState1[0], setEditedValue = _useState1[1];
+    var _useState2 = _sliced_to_array$4(React.useState(""), 2), showActionButtons = _useState2[0], setShowActionButtons = _useState2[1];
+    var _useState3 = _sliced_to_array$4(React.useState(true), 2); _useState3[0]; _useState3[1];
+    var _useState4 = _sliced_to_array$4(React.useState(false), 2), mounted = _useState4[0], setMounted = _useState4[1];
     var isMobile = useIsMobile();
     // console.log("isMobile", isMobile);
-    useEffect(function() {
+    React.useEffect(function() {
         setMounted(true);
     }, []);
     // useEffect(() => {
@@ -146,7 +148,7 @@ var Table = function(param) {
     // 		window.removeEventListener("resize", resizeHandler);
     // 	};
     // }, []);
-    useEffect(function() {
+    React.useEffect(function() {
         var scrollHandler = function() {
             if (showActionButtons !== "") {
                 setShowActionButtons("");
@@ -205,16 +207,16 @@ var Table = function(param) {
         }
     };
     if (!mounted) return null;
-    return /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+    return /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
         className: "grid grid-cols-1 sm:grid-cols-auto gap-x-3 sm:gap-x-0 overflow-hidden",
         children: [
             data.map(function(param) {
                 var _param = _sliced_to_array$4(param, 2), key = _param[0], value = _param[1];
                 // const formatter = new JSONFormatter(value);
                 // console.log("formatter", formatter, formatter.render());
-                return /*#__PURE__*/ jsxRuntimeExports.jsxs(React.Fragment, {
+                return /*#__PURE__*/ index.jsxRuntimeExports.jsxs(React.Fragment, {
                     children: [
-                        /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                        /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                             className: "border-b border-transparent sm:border-slate-200 dark:border-slate-700 p-1 sm:p-4 text-slate-500 dark:text-slate-400",
                             onDoubleClick: function() {
                                 return handleDoubleClick("key_".concat(key), key);
@@ -228,7 +230,7 @@ var Table = function(param) {
                             onClick: function() {
                                 return onRowClickHandler("".concat(key));
                             },
-                            children: editedIndex === "key_".concat(key) ? /*#__PURE__*/ jsxRuntimeExports.jsx(EditableInput, {
+                            children: editedIndex === "key_".concat(key) ? /*#__PURE__*/ index.jsxRuntimeExports.jsx(EditableInput, {
                                 autofocus: true,
                                 value: editedValue,
                                 onChange: handleInputChange,
@@ -237,7 +239,7 @@ var Table = function(param) {
                                 }
                             }) : key
                         }),
-                        /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                        /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                             className: "relative border-b border-slate-200 dark:border-slate-700 mb-2 sm:mb-0 p-1 sm:p-4 text-slate-500 dark:text-slate-400 overflow-hidden",
                             onDoubleClick: function() {
                                 return handleDoubleClick("value_".concat(key), value);
@@ -252,32 +254,32 @@ var Table = function(param) {
                                 return onRowClickHandler("".concat(key));
                             },
                             children: [
-                                editedIndex === "value_".concat(key) ? /*#__PURE__*/ jsxRuntimeExports.jsx(EditableInput, {
+                                editedIndex === "value_".concat(key) ? /*#__PURE__*/ index.jsxRuntimeExports.jsx(EditableInput, {
                                     autofocus: true,
                                     value: editedValue,
                                     onChange: handleInputChange,
                                     onBlur: function() {
                                         return handleInputBlur("VALUE", key);
                                     }
-                                }) : /*#__PURE__*/ jsxRuntimeExports.jsx(TableRow$1, {
+                                }) : /*#__PURE__*/ index.jsxRuntimeExports.jsx(TableRow$1, {
                                     value: value
                                 }),
-                                showActionButtons === "".concat(key) && editedIndex === "" && /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                                showActionButtons === "".concat(key) && editedIndex === "" && /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                                     className: "absolute bottom-1 sm:bottom-3 right-0 flex gap-1",
                                     children: [
-                                        /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                        /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                             className: "p-1.5 bg-slate-200 rounded-md",
                                             onClick: function() {
                                                 return handleDeleteItem(storageType, key);
                                             },
-                                            children: /*#__PURE__*/ jsxRuntimeExports.jsx("img", {
+                                            children: /*#__PURE__*/ index.jsxRuntimeExports.jsx("img", {
                                                 src: img$4,
                                                 width: 18,
                                                 height: 18,
                                                 alt: "delete row"
                                             })
                                         }),
-                                        /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                        /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                             className: "p-1.5 bg-slate-200 rounded-md",
                                             onClick: function() {
                                                 return copyContent([
@@ -287,7 +289,7 @@ var Table = function(param) {
                                                     ]
                                                 ]);
                                             },
-                                            children: /*#__PURE__*/ jsxRuntimeExports.jsx("img", {
+                                            children: /*#__PURE__*/ index.jsxRuntimeExports.jsx("img", {
                                                 src: img$3,
                                                 width: 17,
                                                 height: 17,
@@ -301,9 +303,9 @@ var Table = function(param) {
                     ]
                 }, "".concat(storageType, "_").concat(key));
             }),
-            data.length === 0 && /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+            data.length === 0 && /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                 className: "",
-                children: /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                     className: "text-slate-500 dark:text-slate-400 text-center",
                     children: "No Data"
                 })
@@ -378,7 +380,7 @@ var Input = function(_param) {
         "onChange"
     ]);
     if (type === "checkbox") {
-        return /*#__PURE__*/ jsxRuntimeExports.jsx("input", {
+        return /*#__PURE__*/ index.jsxRuntimeExports.jsx("input", {
             id: id,
             name: name,
             type: "checkbox",
@@ -387,10 +389,10 @@ var Input = function(_param) {
             onChange: onChange
         });
     }
-    return /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+    return /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
         className: "relative w-full",
         children: [
-            /*#__PURE__*/ jsxRuntimeExports.jsx("input", _object_spread$2({
+            /*#__PURE__*/ index.jsxRuntimeExports.jsx("input", _object_spread$2({
                 className: "peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none",
                 autoComplete: "off",
                 type: type,
@@ -402,7 +404,7 @@ var Input = function(_param) {
                     return onChange(e.target.value);
                 }
             }, rest)),
-            /*#__PURE__*/ jsxRuntimeExports.jsx("label", {
+            /*#__PURE__*/ index.jsxRuntimeExports.jsx("label", {
                 htmlFor: id,
                 className: "pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800",
                 children: label
@@ -413,7 +415,7 @@ var Input = function(_param) {
 
 var Button = function(param) {
     var label = param.label, _param_variant = param.variant, variant = _param_variant === void 0 ? "success" : _param_variant, onClick = param.onClick;
-    return /*#__PURE__*/ jsxRuntimeExports.jsx("button", {
+    return /*#__PURE__*/ index.jsxRuntimeExports.jsx("button", {
         className: "px-4 py-2 font-semibold text-sm text-white rounded-md shadow-sm ".concat(variant === "success" ? "bg-gray-700" : "bg-red-500"),
         onClick: onClick,
         children: label
@@ -547,11 +549,11 @@ var getErrorColorClass = function(error) {
     }
 };
 var Console = function() {
-    var _useState = _sliced_to_array$3(useState([]), 2), logs = _useState[0], setLogs = _useState[1];
-    var _useState1 = _sliced_to_array$3(useState(""), 2), filter = _useState1[0], setFilter = _useState1[1];
-    var deferredFilterValue = useDeferredValue(filter);
-    var _useState2 = _sliced_to_array$3(useState(false), 2), openSection = _useState2[0], setOpenSection = _useState2[1];
-    useEffect(function() {
+    var _useState = _sliced_to_array$3(React.useState([]), 2), logs = _useState[0], setLogs = _useState[1];
+    var _useState1 = _sliced_to_array$3(React.useState(""), 2), filter = _useState1[0], setFilter = _useState1[1];
+    var deferredFilterValue = React.useDeferredValue(filter);
+    var _useState2 = _sliced_to_array$3(React.useState(false), 2), openSection = _useState2[0], setOpenSection = _useState2[1];
+    React.useEffect(function() {
         var originalConsole = window.console;
         window.console = _object_spread_props$1(_object_spread$1({}, originalConsole), {
             log: function() {
@@ -609,7 +611,7 @@ var Console = function() {
         e.stopPropagation();
         setFilter(e.target.value);
     };
-    var filteredLogs = useMemo(function() {
+    var filteredLogs = React.useMemo(function() {
         return logs.filter(function(log) {
             var message = log.message.join(" ");
             return message.toLowerCase().includes(deferredFilterValue.toLowerCase());
@@ -618,32 +620,32 @@ var Console = function() {
         deferredFilterValue,
         logs
     ]);
-    return /*#__PURE__*/ jsxRuntimeExports.jsxs("details", {
+    return /*#__PURE__*/ index.jsxRuntimeExports.jsxs("details", {
         className: "group",
         open: openSection,
         onToggle: function(e) {
             setOpenSection(e.target.open);
         },
         children: [
-            /*#__PURE__*/ jsxRuntimeExports.jsxs("summary", {
+            /*#__PURE__*/ index.jsxRuntimeExports.jsxs("summary", {
                 className: "flex cursor-pointer list-none items-center justify-between font-medium",
                 children: [
-                    /*#__PURE__*/ jsxRuntimeExports.jsx("h1", {
+                    /*#__PURE__*/ index.jsxRuntimeExports.jsx("h1", {
                         className: "text-lg font-medium",
                         children: "Console"
                     }),
-                    /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                    /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                         className: "flex flex-1 mx-1 sm:mx-3 gap-2 items-center justify-between",
-                        children: openSection && filteredLogs.length > 0 && /*#__PURE__*/ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                        children: openSection && filteredLogs.length > 0 && /*#__PURE__*/ index.jsxRuntimeExports.jsxs(index.jsxRuntimeExports.Fragment, {
                             children: [
-                                /*#__PURE__*/ jsxRuntimeExports.jsx("input", {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx("input", {
                                     type: "text",
                                     placeholder: "Filter logs...",
                                     value: filter,
                                     onChange: handleFilterChange,
                                     className: "appearance-none bg-slate-100 border-none text-slate-500 dark:text-slate-400 rounded-md mt-2 py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-slate-500"
                                 }),
-                                /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                     className: "p-1.5 mt-1.5 hover:bg-slate-200 rounded-md",
                                     onClick: function(e) {
                                         e.preventDefault();
@@ -651,7 +653,7 @@ var Console = function() {
                                         console.clear();
                                         setLogs([]);
                                     },
-                                    children: /*#__PURE__*/ jsxRuntimeExports.jsx("img", {
+                                    children: /*#__PURE__*/ index.jsxRuntimeExports.jsx("img", {
                                         src: img$4,
                                         width: 24,
                                         height: 24,
@@ -661,9 +663,9 @@ var Console = function() {
                             ]
                         })
                     }),
-                    /*#__PURE__*/ jsxRuntimeExports.jsx("span", {
+                    /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
                         className: "transition group-open:rotate-180",
-                        children: /*#__PURE__*/ jsxRuntimeExports.jsx("img", {
+                        children: /*#__PURE__*/ index.jsxRuntimeExports.jsx("img", {
                             src: img,
                             width: 24,
                             height: 24,
@@ -672,20 +674,20 @@ var Console = function() {
                     })
                 ]
             }),
-            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                 className: "group-open:animate-fadeIn mt-3 text-neutral-600",
-                children: /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                     className: "divide-y divide-gray-700",
-                    children: filteredLogs.map(function(log, index) {
-                        return /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                    children: filteredLogs.map(function(log, index$1) {
+                        return /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                             className: "py-2 ".concat(getErrorColorClass(log)),
-                            children: log.message.map(function(part, index) {
-                                return /*#__PURE__*/ jsxRuntimeExports.jsx("span", {
+                            children: log.message.map(function(part, index$1) {
+                                return /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
                                     className: "break-words",
                                     children: part.toString()
-                                }, index);
+                                }, index$1);
                             })
-                        }, index);
+                        }, index$1);
                     })
                 })
             })
@@ -793,7 +795,7 @@ function _unsupported_iterable_to_array$2(o, minLen) {
 }
 function ObjectViewer(param) {
     var data = param.data;
-    var _useState = _sliced_to_array$2(useState({}), 2), isOpen = _useState[0], setIsOpen = _useState[1];
+    var _useState = _sliced_to_array$2(React.useState({}), 2), isOpen = _useState[0], setIsOpen = _useState[1];
     var toggleOpen = function(key) {
         setIsOpen(function(prevState) {
             return _object_spread_props(_object_spread({}, prevState), _define_property({}, key, !prevState[key]));
@@ -804,30 +806,30 @@ function ObjectViewer(param) {
             return data;
         }
         if (Array.isArray(data)) {
-            return data.map(function(item, index) {
-                return /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+            return data.map(function(item, index$1) {
+                return /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                     className: "ml-4",
                     children: renderData(item)
-                }, index);
+                }, index$1);
             });
         }
         return Object.entries(data).map(function(param) {
             var _param = _sliced_to_array$2(param, 2), key = _param[0], value = _param[1];
-            return /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+            return /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                 children: [
-                    typeof value === "object" ? /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                    typeof value === "object" ? /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                         onClick: function() {
                             return toggleOpen(key);
                         },
                         className: "cursor-pointer",
                         children: [
-                            /*#__PURE__*/ jsxRuntimeExports.jsx("span", {
+                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
                                 className: "mr-1",
                                 children: isOpen[key] ? "▸" : "▾"
                             }),
                             key
                         ]
-                    }) : /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                    }) : /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                         children: [
                             key,
                             ":",
@@ -835,7 +837,7 @@ function ObjectViewer(param) {
                             value
                         ]
                     }),
-                    isOpen[key] && /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                    isOpen[key] && /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                         className: "ml-4",
                         children: renderData(value)
                     })
@@ -843,7 +845,7 @@ function ObjectViewer(param) {
             }, key);
         });
     };
-    return /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+    return /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
         children: renderData(data)
     });
 }
@@ -895,16 +897,16 @@ function _unsupported_iterable_to_array$1(o, minLen) {
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array$1(o, minLen);
 }
 var Network = function() {
-    var _useNetworkContext = useNetworkContext(), networkRequests = _useNetworkContext.networkRequests, clearNetworkRequests = _useNetworkContext.clearNetworkRequests;
-    var _useState = _sliced_to_array$1(useState(false), 2), openSection = _useState[0], setOpenSection = _useState[1];
-    var _useState1 = _sliced_to_array$1(useState(""), 2), filter = _useState1[0], setFilter = _useState1[1];
-    var deferredFilterValue = useDeferredValue(filter);
+    var _useDebugContext = index.useDebugContext(), networkRequests = _useDebugContext.networkRequests, clearNetworkRequests = _useDebugContext.clearNetworkRequests;
+    var _useState = _sliced_to_array$1(React.useState(false), 2), openSection = _useState[0], setOpenSection = _useState[1];
+    var _useState1 = _sliced_to_array$1(React.useState(""), 2), filter = _useState1[0], setFilter = _useState1[1];
+    var deferredFilterValue = React.useDeferredValue(filter);
     var handleFilterChange = function(e) {
         e.preventDefault();
         e.stopPropagation();
         setFilter(e.target.value);
     };
-    var filteredNetworkRequests = useMemo(function() {
+    var filteredNetworkRequests = React.useMemo(function() {
         return networkRequests.filter(function(param) {
             var request = param.request;
             return request.url.includes(deferredFilterValue.toLowerCase());
@@ -913,32 +915,32 @@ var Network = function() {
         deferredFilterValue,
         networkRequests
     ]);
-    return /*#__PURE__*/ jsxRuntimeExports.jsxs("details", {
+    return /*#__PURE__*/ index.jsxRuntimeExports.jsxs("details", {
         className: "group",
         open: openSection,
         onToggle: function(e) {
             setOpenSection(e.target.open);
         },
         children: [
-            /*#__PURE__*/ jsxRuntimeExports.jsxs("summary", {
+            /*#__PURE__*/ index.jsxRuntimeExports.jsxs("summary", {
                 className: "flex cursor-pointer list-none items-center justify-between font-medium",
                 children: [
-                    /*#__PURE__*/ jsxRuntimeExports.jsx("h1", {
+                    /*#__PURE__*/ index.jsxRuntimeExports.jsx("h1", {
                         className: "text-lg font-medium",
                         children: "Network"
                     }),
-                    /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                    /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                         className: "flex flex-1 mx-1 sm:mx-3 gap-2 items-center justify-between",
-                        children: openSection && filteredNetworkRequests.length > 0 && /*#__PURE__*/ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                        children: openSection && filteredNetworkRequests.length > 0 && /*#__PURE__*/ index.jsxRuntimeExports.jsxs(index.jsxRuntimeExports.Fragment, {
                             children: [
-                                /*#__PURE__*/ jsxRuntimeExports.jsx("input", {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx("input", {
                                     type: "text",
                                     placeholder: "Filter requests...",
                                     value: filter,
                                     onChange: handleFilterChange,
                                     className: "appearance-none bg-slate-100 border-none text-slate-500 dark:text-slate-400 rounded-md mt-2 py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-slate-500"
                                 }),
-                                /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                     className: "p-1.5 mt-1.5 hover:bg-slate-200 rounded-md",
                                     onClick: function(e) {
                                         e.preventDefault();
@@ -946,7 +948,7 @@ var Network = function() {
                                         clearNetworkRequests();
                                         setOpenSection(false);
                                     },
-                                    children: /*#__PURE__*/ jsxRuntimeExports.jsx("img", {
+                                    children: /*#__PURE__*/ index.jsxRuntimeExports.jsx("img", {
                                         src: img$4,
                                         width: 24,
                                         height: 24,
@@ -956,9 +958,9 @@ var Network = function() {
                             ]
                         })
                     }),
-                    /*#__PURE__*/ jsxRuntimeExports.jsx("span", {
+                    /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
                         className: "transition group-open:rotate-180",
-                        children: /*#__PURE__*/ jsxRuntimeExports.jsx("img", {
+                        children: /*#__PURE__*/ index.jsxRuntimeExports.jsx("img", {
                             src: img,
                             width: 24,
                             height: 24,
@@ -967,15 +969,15 @@ var Network = function() {
                     })
                 ]
             }),
-            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                 className: "group-open:animate-fadeIn mt-3 text-neutral-600 -mx-4",
-                children: filteredNetworkRequests.map(function(request, index) {
-                    return /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
-                        className: "px-4 py-2 ".concat(index % 2 === 0 ? "bg-slate-100" : ""),
-                        children: /*#__PURE__*/ jsxRuntimeExports.jsx(ObjectViewer, {
+                children: filteredNetworkRequests.map(function(request, index$1) {
+                    return /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
+                        className: "px-4 py-2 ".concat(index$1 % 2 === 0 ? "bg-slate-100" : ""),
+                        children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(ObjectViewer, {
                             data: request
                         })
-                    }, index);
+                    }, index$1);
                 })
             })
         ]
@@ -1183,14 +1185,14 @@ function arrayToJSON(arr) {
 }
 var RenderImage = function(param) {
     var src = param.src, _param_width = param.width, width = _param_width === void 0 ? 22 : _param_width, _param_height = param.height, height = _param_height === void 0 ? 22 : _param_height, _param_alt = param.alt, alt = _param_alt === void 0 ? "image description" : _param_alt, onClick = param.onClick;
-    return /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+    return /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
         className: "p-1.5 hover:bg-slate-200 rounded-md",
         onClick: function(e) {
             e.preventDefault();
             e.stopPropagation();
             onClick();
         },
-        children: /*#__PURE__*/ jsxRuntimeExports.jsx("img", {
+        children: /*#__PURE__*/ index.jsxRuntimeExports.jsx("img", {
             src: src,
             width: width,
             height: height,
@@ -1199,21 +1201,21 @@ var RenderImage = function(param) {
     });
 };
 var Storage = function() {
-    var _useState = _sliced_to_array(useState(Object.entries(localStorage)), 2), localStorageItems = _useState[0], setLocalStorageItems = _useState[1];
-    var _useState1 = _sliced_to_array(useState(Object.entries(sessionStorage)), 2), sessionStorageItems = _useState1[0], setSessionStorageItems = _useState1[1];
-    var _useState2 = _sliced_to_array(useState(parseCookies()), 2), cookieItems = _useState2[0], setCookieItems = _useState2[1];
-    var _useState3 = _sliced_to_array(useState(""), 2), newLocalKey = _useState3[0], setNewLocalKey = _useState3[1];
-    var _useState4 = _sliced_to_array(useState(""), 2), newLocalValue = _useState4[0], setNewLocalValue = _useState4[1];
-    var _useState5 = _sliced_to_array(useState(""), 2), newSessionKey = _useState5[0], setNewSessionKey = _useState5[1];
-    var _useState6 = _sliced_to_array(useState(""), 2), newSessionValue = _useState6[0], setNewSessionValue = _useState6[1];
-    var _useState7 = _sliced_to_array(useState(""), 2), newCookieKey = _useState7[0], setNewCookieKey = _useState7[1];
-    var _useState8 = _sliced_to_array(useState(""), 2), newCookieValue = _useState8[0], setNewCookieValue = _useState8[1];
-    var _useState9 = _sliced_to_array(useState([
+    var _useState = _sliced_to_array(React.useState(Object.entries(localStorage)), 2), localStorageItems = _useState[0], setLocalStorageItems = _useState[1];
+    var _useState1 = _sliced_to_array(React.useState(Object.entries(sessionStorage)), 2), sessionStorageItems = _useState1[0], setSessionStorageItems = _useState1[1];
+    var _useState2 = _sliced_to_array(React.useState(parseCookies()), 2), cookieItems = _useState2[0], setCookieItems = _useState2[1];
+    var _useState3 = _sliced_to_array(React.useState(""), 2), newLocalKey = _useState3[0], setNewLocalKey = _useState3[1];
+    var _useState4 = _sliced_to_array(React.useState(""), 2), newLocalValue = _useState4[0], setNewLocalValue = _useState4[1];
+    var _useState5 = _sliced_to_array(React.useState(""), 2), newSessionKey = _useState5[0], setNewSessionKey = _useState5[1];
+    var _useState6 = _sliced_to_array(React.useState(""), 2), newSessionValue = _useState6[0], setNewSessionValue = _useState6[1];
+    var _useState7 = _sliced_to_array(React.useState(""), 2), newCookieKey = _useState7[0], setNewCookieKey = _useState7[1];
+    var _useState8 = _sliced_to_array(React.useState(""), 2), newCookieValue = _useState8[0], setNewCookieValue = _useState8[1];
+    var _useState9 = _sliced_to_array(React.useState([
         true,
         false,
         false
     ]), 2), openSection = _useState9[0], setOpenSection = _useState9[1];
-    var _useState10 = _sliced_to_array(useState([
+    var _useState10 = _sliced_to_array(React.useState([
         false,
         false,
         false
@@ -1390,31 +1392,31 @@ var Storage = function() {
             return _ref.apply(this, arguments);
         };
     }();
-    return /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+    return /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
         className: "grid grid-cols-1 divide-y divide-neutral-300",
         children: [
-            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                 className: "pb-4",
-                children: /*#__PURE__*/ jsxRuntimeExports.jsxs("details", {
+                children: /*#__PURE__*/ index.jsxRuntimeExports.jsxs("details", {
                     className: "group",
                     open: openSection[0],
                     onToggle: function(e) {
                         openSectionHandler(0, e.target.open);
                     },
                     children: [
-                        /*#__PURE__*/ jsxRuntimeExports.jsxs("summary", {
+                        /*#__PURE__*/ index.jsxRuntimeExports.jsxs("summary", {
                             className: "flex cursor-pointer list-none items-center justify-between font-medium",
                             children: [
-                                /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                                     className: "flex gap-3 items-center",
                                     children: [
-                                        /*#__PURE__*/ jsxRuntimeExports.jsx("h1", {
+                                        /*#__PURE__*/ index.jsxRuntimeExports.jsx("h1", {
                                             className: "text-lg font-medium",
                                             children: "Local Storage"
                                         }),
-                                        openSection[0] && /*#__PURE__*/ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                                        openSection[0] && /*#__PURE__*/ index.jsxRuntimeExports.jsxs(index.jsxRuntimeExports.Fragment, {
                                             children: [
-                                                /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                                /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                                     src: openAddItem[0] ? img$1 : img$2,
                                                     width: 24,
                                                     height: 24,
@@ -1423,9 +1425,9 @@ var Storage = function() {
                                                         return openAddItemHandler(0);
                                                     }
                                                 }),
-                                                localStorageItems.length > 0 && /*#__PURE__*/ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                                                localStorageItems.length > 0 && /*#__PURE__*/ index.jsxRuntimeExports.jsxs(index.jsxRuntimeExports.Fragment, {
                                                     children: [
-                                                        /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                                        /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                                             src: img$4,
                                                             width: 22,
                                                             height: 22,
@@ -1434,7 +1436,7 @@ var Storage = function() {
                                                                 return handleClearAll("localStorage");
                                                             }
                                                         }),
-                                                        /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                                        /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                                             src: img$3,
                                                             width: 22,
                                                             height: 22,
@@ -1449,9 +1451,9 @@ var Storage = function() {
                                         })
                                     ]
                                 }),
-                                /*#__PURE__*/ jsxRuntimeExports.jsx("span", {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
                                     className: "transition group-open:rotate-180",
-                                    children: /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                    children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                         src: img,
                                         width: 24,
                                         height: 24,
@@ -1460,28 +1462,28 @@ var Storage = function() {
                                 })
                             ]
                         }),
-                        /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                        /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                             className: "group-open:animate-fadeIn mt-3 text-neutral-600",
                             children: [
-                                /*#__PURE__*/ jsxRuntimeExports.jsx(Table, {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx(Table, {
                                     data: localStorageItems,
                                     storageType: "localStorage",
                                     handleAddItem: handleAddItem,
                                     handleDeleteItem: handleDeleteItem,
                                     copyContent: copyContent
                                 }),
-                                openAddItem[0] && /*#__PURE__*/ jsxRuntimeExports.jsx("form", {
+                                openAddItem[0] && /*#__PURE__*/ index.jsxRuntimeExports.jsx("form", {
                                     onSubmit: function(e) {
                                         e.preventDefault();
                                         handleAddItem("localStorage", newLocalKey, newLocalValue);
                                     },
                                     "data-storage-type": "localStorage",
-                                    children: /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                                    children: /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                                         className: "mt-3 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-7",
                                         children: [
-                                            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                                 className: "sm:col-span-3",
-                                                children: /*#__PURE__*/ jsxRuntimeExports.jsx(Input, {
+                                                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(Input, {
                                                     id: "localKey",
                                                     label: "Key",
                                                     placeholder: "Key",
@@ -1490,9 +1492,9 @@ var Storage = function() {
                                                     onChange: setNewLocalKey
                                                 })
                                             }),
-                                            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                                 className: "sm:col-span-3",
-                                                children: /*#__PURE__*/ jsxRuntimeExports.jsx(Input, {
+                                                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(Input, {
                                                     id: "localValue",
                                                     label: "Value",
                                                     placeholder: "Value",
@@ -1501,9 +1503,9 @@ var Storage = function() {
                                                     onChange: setNewLocalValue
                                                 })
                                             }),
-                                            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                                 className: "sm:col-span-1 flex justify-center sm:justify-start sm:items-end sm:pb-1",
-                                                children: /*#__PURE__*/ jsxRuntimeExports.jsx(Button, {
+                                                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(Button, {
                                                     label: "Add"
                                                 })
                                             })
@@ -1515,28 +1517,28 @@ var Storage = function() {
                     ]
                 })
             }),
-            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                 className: "py-4",
-                children: /*#__PURE__*/ jsxRuntimeExports.jsxs("details", {
+                children: /*#__PURE__*/ index.jsxRuntimeExports.jsxs("details", {
                     className: "group",
                     open: openSection[1],
                     onToggle: function(e) {
                         openSectionHandler(1, e.target.open);
                     },
                     children: [
-                        /*#__PURE__*/ jsxRuntimeExports.jsxs("summary", {
+                        /*#__PURE__*/ index.jsxRuntimeExports.jsxs("summary", {
                             className: "flex cursor-pointer list-none items-center justify-between font-medium",
                             children: [
-                                /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                                     className: "flex gap-3 items-center",
                                     children: [
-                                        /*#__PURE__*/ jsxRuntimeExports.jsx("h1", {
+                                        /*#__PURE__*/ index.jsxRuntimeExports.jsx("h1", {
                                             className: "text-lg font-medium",
                                             children: "Session Storage"
                                         }),
-                                        openSection[1] && /*#__PURE__*/ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                                        openSection[1] && /*#__PURE__*/ index.jsxRuntimeExports.jsxs(index.jsxRuntimeExports.Fragment, {
                                             children: [
-                                                /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                                /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                                     src: openAddItem[1] ? img$1 : img$2,
                                                     width: 24,
                                                     height: 24,
@@ -1545,9 +1547,9 @@ var Storage = function() {
                                                         return openAddItemHandler(1);
                                                     }
                                                 }),
-                                                sessionStorageItems.length > 0 && /*#__PURE__*/ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                                                sessionStorageItems.length > 0 && /*#__PURE__*/ index.jsxRuntimeExports.jsxs(index.jsxRuntimeExports.Fragment, {
                                                     children: [
-                                                        /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                                        /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                                             src: img$4,
                                                             width: 22,
                                                             height: 22,
@@ -1556,7 +1558,7 @@ var Storage = function() {
                                                                 return handleClearAll("sessionStorage");
                                                             }
                                                         }),
-                                                        /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                                        /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                                             src: img$3,
                                                             width: 22,
                                                             height: 22,
@@ -1571,9 +1573,9 @@ var Storage = function() {
                                         })
                                     ]
                                 }),
-                                /*#__PURE__*/ jsxRuntimeExports.jsx("span", {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
                                     className: "transition group-open:rotate-180",
-                                    children: /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                    children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                         src: img,
                                         width: 24,
                                         height: 24,
@@ -1585,28 +1587,28 @@ var Storage = function() {
                                 })
                             ]
                         }),
-                        /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                        /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                             className: "group-open:animate-fadeIn mt-3 text-neutral-600",
                             children: [
-                                /*#__PURE__*/ jsxRuntimeExports.jsx(Table, {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx(Table, {
                                     data: sessionStorageItems,
                                     storageType: "sessionStorage",
                                     handleAddItem: handleAddItem,
                                     handleDeleteItem: handleDeleteItem,
                                     copyContent: copyContent
                                 }),
-                                openAddItem[1] && /*#__PURE__*/ jsxRuntimeExports.jsx("form", {
+                                openAddItem[1] && /*#__PURE__*/ index.jsxRuntimeExports.jsx("form", {
                                     onSubmit: function(e) {
                                         e.preventDefault();
                                         handleAddItem("sessionStorage", newSessionKey, newSessionValue);
                                     },
                                     "data-storage-type": "sessionStorage",
-                                    children: /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                                    children: /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                                         className: "mt-3 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-7",
                                         children: [
-                                            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                                 className: "sm:col-span-3",
-                                                children: /*#__PURE__*/ jsxRuntimeExports.jsx(Input, {
+                                                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(Input, {
                                                     id: "sessionKey",
                                                     label: "Key",
                                                     placeholder: "Key",
@@ -1615,9 +1617,9 @@ var Storage = function() {
                                                     onChange: setNewSessionKey
                                                 })
                                             }),
-                                            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                                 className: "sm:col-span-3",
-                                                children: /*#__PURE__*/ jsxRuntimeExports.jsx(Input, {
+                                                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(Input, {
                                                     id: "sessionValue",
                                                     label: "Value",
                                                     placeholder: "Value",
@@ -1626,9 +1628,9 @@ var Storage = function() {
                                                     onChange: setNewSessionValue
                                                 })
                                             }),
-                                            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                                 className: "sm:col-span-1 flex justify-center sm:justify-start sm:items-end sm:pb-1",
-                                                children: /*#__PURE__*/ jsxRuntimeExports.jsx(Button, {
+                                                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(Button, {
                                                     label: "Add"
                                                 })
                                             })
@@ -1640,28 +1642,28 @@ var Storage = function() {
                     ]
                 })
             }),
-            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                 className: "py-4",
-                children: /*#__PURE__*/ jsxRuntimeExports.jsxs("details", {
+                children: /*#__PURE__*/ index.jsxRuntimeExports.jsxs("details", {
                     className: "group",
                     open: openSection[2],
                     onToggle: function(e) {
                         openSectionHandler(2, e.target.open);
                     },
                     children: [
-                        /*#__PURE__*/ jsxRuntimeExports.jsxs("summary", {
+                        /*#__PURE__*/ index.jsxRuntimeExports.jsxs("summary", {
                             className: "flex cursor-pointer list-none items-center justify-between font-medium",
                             children: [
-                                /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                                     className: "flex gap-3 items-center",
                                     children: [
-                                        /*#__PURE__*/ jsxRuntimeExports.jsx("h1", {
+                                        /*#__PURE__*/ index.jsxRuntimeExports.jsx("h1", {
                                             className: "text-lg font-medium",
                                             children: "Cookies"
                                         }),
-                                        openSection[2] && /*#__PURE__*/ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                                        openSection[2] && /*#__PURE__*/ index.jsxRuntimeExports.jsxs(index.jsxRuntimeExports.Fragment, {
                                             children: [
-                                                /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                                /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                                     src: openAddItem[2] ? img$1 : img$2,
                                                     width: 24,
                                                     height: 24,
@@ -1670,9 +1672,9 @@ var Storage = function() {
                                                         return openAddItemHandler(2);
                                                     }
                                                 }),
-                                                cookieItems.length > 0 && /*#__PURE__*/ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                                                cookieItems.length > 0 && /*#__PURE__*/ index.jsxRuntimeExports.jsxs(index.jsxRuntimeExports.Fragment, {
                                                     children: [
-                                                        /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                                        /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                                             src: img$4,
                                                             width: 22,
                                                             height: 22,
@@ -1681,7 +1683,7 @@ var Storage = function() {
                                                                 return handleClearAllCookies();
                                                             }
                                                         }),
-                                                        /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                                        /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                                             src: img$3,
                                                             width: 22,
                                                             height: 22,
@@ -1696,9 +1698,9 @@ var Storage = function() {
                                         })
                                     ]
                                 }),
-                                /*#__PURE__*/ jsxRuntimeExports.jsx("span", {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
                                     className: "transition group-open:rotate-180",
-                                    children: /*#__PURE__*/ jsxRuntimeExports.jsx(RenderImage, {
+                                    children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(RenderImage, {
                                         src: img,
                                         width: 24,
                                         height: 24,
@@ -1710,27 +1712,27 @@ var Storage = function() {
                                 })
                             ]
                         }),
-                        /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                        /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                             className: "group-open:animate-fadeIn mt-3 text-neutral-600",
                             children: [
-                                /*#__PURE__*/ jsxRuntimeExports.jsx(Table, {
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx(Table, {
                                     data: cookieItems,
                                     storageType: "cookie",
                                     handleAddItem: handleAddCookie,
                                     handleDeleteItem: handleDeleteCookie,
                                     copyContent: copyContent
                                 }),
-                                openAddItem[2] && /*#__PURE__*/ jsxRuntimeExports.jsx("form", {
+                                openAddItem[2] && /*#__PURE__*/ index.jsxRuntimeExports.jsx("form", {
                                     onSubmit: function(e) {
                                         e.preventDefault();
                                         handleAddCookie("cookie", newCookieKey, newCookieValue);
                                     },
-                                    children: /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
+                                    children: /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                                         className: "mt-3 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-7",
                                         children: [
-                                            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                                 className: "sm:col-span-3",
-                                                children: /*#__PURE__*/ jsxRuntimeExports.jsx(Input, {
+                                                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(Input, {
                                                     autofocus: true,
                                                     id: "cookieKey",
                                                     label: "Key",
@@ -1740,9 +1742,9 @@ var Storage = function() {
                                                     onChange: setNewCookieKey
                                                 })
                                             }),
-                                            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                                 className: "sm:col-span-3",
-                                                children: /*#__PURE__*/ jsxRuntimeExports.jsx(Input, {
+                                                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(Input, {
                                                     id: "cookieValue",
                                                     label: "Value",
                                                     placeholder: "Value",
@@ -1751,9 +1753,9 @@ var Storage = function() {
                                                     onChange: setNewCookieValue
                                                 })
                                             }),
-                                            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+                                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                                                 className: "sm:col-span-1 flex justify-center sm:justify-start sm:items-end sm:pb-1",
-                                                children: /*#__PURE__*/ jsxRuntimeExports.jsx(Button, {
+                                                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(Button, {
                                                     label: "Add"
                                                 })
                                             })
@@ -1765,17 +1767,17 @@ var Storage = function() {
                     ]
                 })
             }),
-            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                 className: "py-4",
-                children: /*#__PURE__*/ jsxRuntimeExports.jsx(Console, {})
+                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(Console, {})
             }),
-            /*#__PURE__*/ jsxRuntimeExports.jsx("div", {
+            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                 className: "py-4",
-                children: /*#__PURE__*/ jsxRuntimeExports.jsx(Network, {})
+                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx(Network, {})
             })
         ]
     });
 };
 
-export { Storage as default };
-//# sourceMappingURL=Storage-16ae8687.js.map
+exports.default = Storage;
+//# sourceMappingURL=Storage-93e55b24.js.map

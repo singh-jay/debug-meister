@@ -1,3 +1,3 @@
-export { N as NetworkProvider } from './index-c30b8842.js';
+export { D as DebugProvider } from './index-f4faa09e.js';
 import 'react';
 //# sourceMappingURL=index.js.map

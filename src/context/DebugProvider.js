@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { NetworkContext } from './NetworkContext';
+import { DebugContext } from './DebugContext';
 import withNetworkLogger from '../components/HOC/withNetworkLogger';
 import DebugOverlay from '../components/DebugOverlay';
 
@@ -14,7 +14,7 @@ const Child = ({ children }) => (
 
 const WrappedComponent = withNetworkLogger(Child);
 
-export const NetworkProvider = ({ children }) => {
+export const DebugProvider = ({ children }) => {
   const [mounted, setMounted] = useState(false);
   const [networkRequests, setNetworkRequests] = useState([]);
 
@@ -31,13 +31,13 @@ export const NetworkProvider = ({ children }) => {
 
   useEffect(() => setMounted(true), []);
 
-  if (!mounted || typeof window === 'undefined') return children;
+  if (!mounted) return children;
 
   return (
-    <NetworkContext.Provider
+    <DebugContext.Provider
       value={{ networkRequests, addNetworkRequest, clearNetworkRequests }}
     >
       <WrappedComponent>{children}</WrappedComponent>
-    </NetworkContext.Provider>
+    </DebugContext.Provider>
   );
 };

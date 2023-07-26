@@ -55,9 +55,9 @@ function q(c,a,g){var b,d={},e=null,h=null;void 0!==g&&(e=""+g);void 0!==a.key&&
 
 var jsxRuntimeExports = jsxRuntime.exports;
 
-var NetworkContext = /*#__PURE__*/ React.createContext({});
-var useNetworkContext = function() {
-    return React.useContext(NetworkContext);
+var DebugContext = /*#__PURE__*/ React.createContext({});
+var useDebugContext = function() {
+    return React.useContext(DebugContext);
 };
 
 function _array_like_to_array$2(arr, len) {
@@ -304,7 +304,7 @@ function _ts_generator(thisArg, body) {
 var withNetworkLogger = function(WrappedComponent) {
     var NetworkLogger = function(props) {
         var _useState = _sliced_to_array$2(React.useState(new Map()), 2), requests = _useState[0], setRequests = _useState[1];
-        var addNetworkRequest = useNetworkContext().addNetworkRequest;
+        var addNetworkRequest = useDebugContext().addNetworkRequest;
         var handleNetworkResponse = React.useCallback(function() {
             var _ref = _async_to_generator(function(response) {
                 var request, _requests_keys_next_value, url, method, body, startTime, timeElapsed, responseData, contentType, _tmp, _tmp1, error;
@@ -594,7 +594,7 @@ function _unsupported_iterable_to_array$1(o, minLen) {
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array$1(o, minLen);
 }
 var Storage = /*#__PURE__*/ React.lazy(function() {
-    return Promise.resolve().then(function () { return require('./Storage-6151f122.js'); });
+    return Promise.resolve().then(function () { return require('./Storage-93e55b24.js'); });
 });
 // import Storage from "./Storage";
 function DebugOverlay() {
@@ -730,7 +730,7 @@ var Child = function(param) {
     });
 };
 var WrappedComponent = withNetworkLogger(Child);
-var NetworkProvider = function(param) {
+var DebugProvider = function(param) {
     var children = param.children;
     var _useState = _sliced_to_array(React.useState(false), 2), mounted = _useState[0], setMounted = _useState[1];
     var _useState1 = _sliced_to_array(React.useState([]), 2), networkRequests = _useState1[0], setNetworkRequests = _useState1[1];
@@ -747,8 +747,8 @@ var NetworkProvider = function(param) {
     React.useEffect(function() {
         return setMounted(true);
     }, []);
-    if (!mounted || typeof window === "undefined") return children;
-    return /*#__PURE__*/ jsxRuntimeExports.jsx(NetworkContext.Provider, {
+    if (!mounted) return children;
+    return /*#__PURE__*/ jsxRuntimeExports.jsx(DebugContext.Provider, {
         value: {
             networkRequests: networkRequests,
             addNetworkRequest: addNetworkRequest,
@@ -760,7 +760,7 @@ var NetworkProvider = function(param) {
     });
 };
 
-exports.NetworkProvider = NetworkProvider;
+exports.DebugProvider = DebugProvider;
 exports.jsxRuntimeExports = jsxRuntimeExports;
-exports.useNetworkContext = useNetworkContext;
-//# sourceMappingURL=index-dbb33918.js.map
+exports.useDebugContext = useDebugContext;
+//# sourceMappingURL=index-b69eb2a4.js.map
