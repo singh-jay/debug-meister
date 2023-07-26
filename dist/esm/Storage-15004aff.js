@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports, u as useNetworkContext } from './index-72a0a7cb.js';
+import { j as jsxRuntimeExports, u as useNetworkContext } from './index-13fc4a27.js';
 import React, { useSyncExternalStore, useRef, useEffect, useState, useDeferredValue, useMemo } from 'react';
 
 var img$4 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-trash-2'%3e%3cpath d='M3 6h18'%3e%3c/path%3e%3cpath d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6'%3e%3c/path%3e%3cpath d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2'%3e%3c/path%3e%3cline x1='10' x2='10' y1='11' y2='17'%3e%3c/line%3e%3cline x1='14' x2='14' y1='11' y2='17'%3e%3c/line%3e%3c/svg%3e";
@@ -8,16 +8,16 @@ var img$3 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width=
 // A memoized constant fn prevents unsubscribe/resubscribe
 // In practice it is not a big deal
 function subscribe(onStoreChange) {
-    var _global_window;
-    (_global_window = global.window) === null || _global_window === void 0 ? void 0 : _global_window.addEventListener("resize", onStoreChange);
+    var _window;
+    (_window = window) === null || _window === void 0 ? void 0 : _window.addEventListener("resize", onStoreChange);
     return function() {
-        var _global_window;
-        return (_global_window = global.window) === null || _global_window === void 0 ? void 0 : _global_window.removeEventListener("resize", onStoreChange);
+        var _window;
+        return (_window = window) === null || _window === void 0 ? void 0 : _window.removeEventListener("resize", onStoreChange);
     };
 }
 function getSnapshot() {
-    var _global_window;
-    return ((_global_window = global.window) === null || _global_window === void 0 ? void 0 : _global_window.innerWidth) < 640 ? true : false;
+    var _window;
+    return ((_window = window) === null || _window === void 0 ? void 0 : _window.innerWidth) < 640 ? true : false;
 }
 function useIsMobile() {
     return useSyncExternalStore(subscribe, getSnapshot);
@@ -1778,4 +1778,4 @@ var Storage = function() {
 };
 
 export { Storage as default };
-//# sourceMappingURL=Storage-62d03546.js.map
+//# sourceMappingURL=Storage-15004aff.js.map
