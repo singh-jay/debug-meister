@@ -1,7 +1,5 @@
 'use client';
-'use strict';
-
-var React = require('react');
+import React, { createContext, useContext, useState, useCallback, useEffect, Suspense, lazy } from 'react';
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
@@ -55,9 +53,9 @@ function q(c,a,g){var b,d={},e=null,h=null;void 0!==g&&(e=""+g);void 0!==a.key&&
 
 var jsxRuntimeExports = jsxRuntime.exports;
 
-var DebugContext = /*#__PURE__*/ React.createContext({});
+var DebugContext = /*#__PURE__*/ createContext({});
 var useDebugContext = function() {
-    return React.useContext(DebugContext);
+    return useContext(DebugContext);
 };
 
 function _array_like_to_array$2(arr, len) {
@@ -303,9 +301,9 @@ function _ts_generator(thisArg, body) {
 }
 var withNetworkLogger = function(WrappedComponent) {
     var NetworkLogger = function(props) {
-        var _useState = _sliced_to_array$2(React.useState(new Map()), 2), requests = _useState[0], setRequests = _useState[1];
+        var _useState = _sliced_to_array$2(useState(new Map()), 2), requests = _useState[0], setRequests = _useState[1];
         var addNetworkRequest = useDebugContext().addNetworkRequest;
-        var handleNetworkResponse = React.useCallback(function() {
+        var handleNetworkResponse = useCallback(function() {
             var _ref = _async_to_generator(function(response) {
                 var request, _requests_keys_next_value, url, method, body, startTime, timeElapsed, responseData, contentType, _tmp, _tmp1, error;
                 return _ts_generator(this, function(_state) {
@@ -431,7 +429,7 @@ var withNetworkLogger = function(WrappedComponent) {
             requests,
             addNetworkRequest
         ]);
-        React.useEffect(function() {
+        useEffect(function() {
             var originalFetch = window.fetch;
             var handleResponse = function(response) {
                 var clonedResponse = response.clone();
@@ -593,15 +591,15 @@ function _unsupported_iterable_to_array$1(o, minLen) {
     if (n === "Map" || n === "Set") return Array.from(n);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array$1(o, minLen);
 }
-var Storage = /*#__PURE__*/ React.lazy(function() {
-    return Promise.resolve().then(function () { return require('./Storage-f03ebd0d.js'); });
+var Storage = /*#__PURE__*/ lazy(function() {
+    return import('./Storage-984f467e.js');
 });
 // import Storage from "./Storage";
 function DebugOverlay() {
-    var _useState = _sliced_to_array$1(React.useState(false), 2), mounted = _useState[0], setMounted = _useState[1];
-    var _useState1 = _sliced_to_array$1(React.useState(false), 2), openPopup = _useState1[0], setOpenPopup = _useState1[1];
+    var _useState = _sliced_to_array$1(useState(false), 2), mounted = _useState[0], setMounted = _useState[1];
+    var _useState1 = _sliced_to_array$1(useState(false), 2), openPopup = _useState1[0], setOpenPopup = _useState1[1];
     // const [storageComponent, setStorageComponent] = useState(null);
-    React.useEffect(function() {
+    useEffect(function() {
         setMounted(true);
     }, []);
     // const loadStorageComponent = async () => {
@@ -613,7 +611,7 @@ function DebugOverlay() {
     //   setOpenPopup(true);
     // };
     if (!mounted) return /*#__PURE__*/ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {});
-    return openPopup ? /*#__PURE__*/ jsxRuntimeExports.jsx(React.Suspense, {
+    return openPopup ? /*#__PURE__*/ jsxRuntimeExports.jsx(Suspense, {
         fallback: /*#__PURE__*/ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {}),
         children: /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
             className: "fixed bottom-0 max-h-mobile sm:max-h-[calc(100vh-theme(space.8))] overflow-auto no-scrollbar right-0 w-mobile sm:w-1/2 sm:m-4 bg-white shadow-xl rounded-lg z-50",
@@ -732,19 +730,19 @@ var Child = function(param) {
 var WrappedComponent = withNetworkLogger(Child);
 var DebugProvider = function(param) {
     var children = param.children;
-    var _useState = _sliced_to_array(React.useState(false), 2), mounted = _useState[0], setMounted = _useState[1];
-    var _useState1 = _sliced_to_array(React.useState([]), 2), networkRequests = _useState1[0], setNetworkRequests = _useState1[1];
-    var addNetworkRequest = React.useCallback(function(request) {
+    var _useState = _sliced_to_array(useState(false), 2), mounted = _useState[0], setMounted = _useState[1];
+    var _useState1 = _sliced_to_array(useState([]), 2), networkRequests = _useState1[0], setNetworkRequests = _useState1[1];
+    var addNetworkRequest = useCallback(function(request) {
         setNetworkRequests(function(prevNetworkRequests) {
             return _to_consumable_array(prevNetworkRequests).concat([
                 request
             ]);
         });
     }, []);
-    var clearNetworkRequests = React.useCallback(function() {
+    var clearNetworkRequests = useCallback(function() {
         setNetworkRequests([]);
     }, []);
-    React.useEffect(function() {
+    useEffect(function() {
         return setMounted(true);
     }, []);
     if (!mounted) return children;
@@ -760,7 +758,5 @@ var DebugProvider = function(param) {
     });
 };
 
-exports.DebugProvider = DebugProvider;
-exports.jsxRuntimeExports = jsxRuntimeExports;
-exports.useDebugContext = useDebugContext;
-//# sourceMappingURL=index-858db20d.js.map
+export { DebugProvider as D, jsxRuntimeExports as j, useDebugContext as u };
+//# sourceMappingURL=index-10149872.js.map

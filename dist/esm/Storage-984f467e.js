@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports, u as useDebugContext } from './index-05e36999.js';
+import { j as jsxRuntimeExports, u as useDebugContext } from './index-10149872.js';
 import React, { useSyncExternalStore, useRef, useEffect, useState, useDeferredValue, useMemo } from 'react';
 
 var img$4 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-trash-2'%3e%3cpath d='M3 6h18'%3e%3c/path%3e%3cpath d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6'%3e%3c/path%3e%3cpath d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2'%3e%3c/path%3e%3cline x1='10' x2='10' y1='11' y2='17'%3e%3c/line%3e%3cline x1='14' x2='14' y1='11' y2='17'%3e%3c/line%3e%3c/svg%3e";
@@ -35,7 +35,7 @@ var parseJSONValue = function(value) {
         return value;
     }
 };
-var TableRow$1 = function(param) {
+var TableRow = function(param) {
     var value = param.value, _param_overflowAllowed = param.overflowAllowed, overflowAllowed = _param_overflowAllowed === void 0 ? true : _param_overflowAllowed, _param_parseJSON = param.parseJSON, parseJSON = _param_parseJSON === void 0 ? true : _param_parseJSON, _param_open = param.open, open = _param_open === void 0 ? 0 : _param_open;
     var renderRef = useRef(null);
     useEffect(function() {
@@ -55,7 +55,7 @@ var TableRow$1 = function(param) {
         className: overflowAllowed ? "overflow-x-auto no-scrollbar whitespace-nowrap" : ""
     });
 };
-var TableRow$2 = /*#__PURE__*/ React.memo(TableRow$1);
+var TableRow$1 = /*#__PURE__*/ React.memo(TableRow);
 
 function _array_like_to_array$3(arr, len) {
     if (len == null || len > arr.length) len = arr.length;
@@ -259,7 +259,7 @@ var Table = function(param) {
                                     onBlur: function() {
                                         return handleInputBlur("VALUE", key);
                                     }
-                                }) : /*#__PURE__*/ jsxRuntimeExports.jsx(TableRow$2, {
+                                }) : /*#__PURE__*/ jsxRuntimeExports.jsx(TableRow$1, {
                                     value: value
                                 }),
                                 showActionButtons === "".concat(key) && editedIndex === "" && /*#__PURE__*/ jsxRuntimeExports.jsxs("div", {
@@ -821,7 +821,7 @@ var Network = function() {
                             /*#__PURE__*/ jsxRuntimeExports.jsx("span", {
                                 children: "Url: "
                             }),
-                            /*#__PURE__*/ jsxRuntimeExports.jsx(TableRow, {
+                            /*#__PURE__*/ jsxRuntimeExports.jsx(TableRow$1, {
                                 value: row.request.url.split("/").pop() || "/",
                                 overflowAllowed: false,
                                 parseJSON: false
@@ -829,7 +829,7 @@ var Network = function() {
                             /*#__PURE__*/ jsxRuntimeExports.jsx("span", {
                                 children: "Request: "
                             }),
-                            /*#__PURE__*/ jsxRuntimeExports.jsx(TableRow, {
+                            /*#__PURE__*/ jsxRuntimeExports.jsx(TableRow$1, {
                                 src: row.request,
                                 overflowAllowed: false,
                                 parseJSON: false
@@ -837,7 +837,7 @@ var Network = function() {
                             /*#__PURE__*/ jsxRuntimeExports.jsx("span", {
                                 children: "Response: "
                             }),
-                            /*#__PURE__*/ jsxRuntimeExports.jsx(TableRow, {
+                            /*#__PURE__*/ jsxRuntimeExports.jsx(TableRow$1, {
                                 src: row.response,
                                 overflowAllowed: false,
                                 parseJSON: false
@@ -845,7 +845,7 @@ var Network = function() {
                             /*#__PURE__*/ jsxRuntimeExports.jsx("span", {
                                 children: "Time Elapsed: "
                             }),
-                            /*#__PURE__*/ jsxRuntimeExports.jsx(TableRow, {
+                            /*#__PURE__*/ jsxRuntimeExports.jsx(TableRow$1, {
                                 src: row.timeElapsed,
                                 overflowAllowed: false,
                                 parseJSON: false
@@ -1654,4 +1654,4 @@ var Storage = function() {
 };
 
 export { Storage as default };
-//# sourceMappingURL=Storage-36f6aca4.js.map
+//# sourceMappingURL=Storage-984f467e.js.map

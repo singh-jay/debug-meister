@@ -2,6 +2,7 @@ import React, { useDeferredValue, useMemo, useState } from 'react';
 import { useDebugContext } from '../context/DebugContext';
 import carrotIcon from '../icons/svg/carrot.svg';
 import trashIcon from '../icons/svg/trash.svg';
+import TableRow from './TableRow';
 
 export const Network = () => {
   const { networkRequests, clearNetworkRequests } = useDebugContext();
