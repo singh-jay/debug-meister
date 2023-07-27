@@ -2,7 +2,6 @@ import React, { useDeferredValue, useMemo, useState } from 'react';
 import { useDebugContext } from '../context/DebugContext';
 import carrotIcon from '../icons/svg/carrot.svg';
 import trashIcon from '../icons/svg/trash.svg';
-import ObjectViewer from './ObjectViewer';
 
 export const Network = () => {
   const { networkRequests, clearNetworkRequests } = useDebugContext();
@@ -67,12 +66,38 @@ export const Network = () => {
         </span>
       </summary>
       <div className="group-open:animate-fadeIn mt-3 text-neutral-600 -mx-4">
-        {filteredNetworkRequests.map((request, index) => (
+        {filteredNetworkRequests.map((row, index) => (
           <div
             key={index}
             className={`px-4 py-2 ${index % 2 === 0 ? 'bg-slate-100' : ''}`}
           >
-            <ObjectViewer data={request} />
+            <span>Url: </span>
+            <TableRow
+              value={row.request.url.split('/').pop() || '/'}
+              overflowAllowed={false}
+              parseJSON={false}
+            />
+
+            <span>Request: </span>
+            <TableRow
+              src={row.request}
+              overflowAllowed={false}
+              parseJSON={false}
+            />
+
+            <span>Response: </span>
+            <TableRow
+              src={row.response}
+              overflowAllowed={false}
+              parseJSON={false}
+            />
+
+            <span>Time Elapsed: </span>
+            <TableRow
+              src={row.timeElapsed}
+              overflowAllowed={false}
+              parseJSON={false}
+            />
           </div>
         ))}
       </div>

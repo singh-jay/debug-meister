@@ -1,6 +1,6 @@
 'use strict';
 
-var index = require('./index-b69eb2a4.js');
+var index = require('./index-858db20d.js');
 require('react');
 
 
