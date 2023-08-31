@@ -14,7 +14,7 @@ const Child = ({ children }) => (
 
 const WrappedComponent = withNetworkLogger(Child);
 
-export const DebugProvider = ({ children }) => {
+const DebugProvider = ({ children }) => {
   const [mounted, setMounted] = useState(false);
   const [networkRequests, setNetworkRequests] = useState([]);
 
@@ -41,3 +41,5 @@ export const DebugProvider = ({ children }) => {
     </DebugContext.Provider>
   );
 };
+
+export default DebugProvider;

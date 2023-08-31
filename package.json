@@ -1,6 +1,6 @@
 {
-  "name": "@singh-jay/debug-meister",
-  "version": "0.1.20",
+  "name": "debug-meister",
+  "version": "0.1.25",
   "private": false,
   "type": "module",
   "main": "dist/cjs/index.js",
@@ -14,9 +14,10 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rimraf dist && bun ./build.js",
+    "build": "rimraf out && bun ./build.js",
     "rollup": "rimraf dist && NODE_ENV=production rollup -c",
-    "lint": "eslint --ext js,jsx src"
+    "lint": "eslint --ext js,jsx src",
+    "build:css": "rimraf dist/css && postcss src/styles/globals.css -o dist/css/main.min.css"
   },
   "dependencies": {
     "json-formatter-js": "^2.3.4"
@@ -90,9 +91,6 @@
     "url": "https://github.com/singh-jay/debug-meister/issues"
   },
   "homepage": "https://github.com/singh-jay/debug-meister#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/singh-jay"
-  },
   "eslintIgnore": [
     ".eslintrc.js",
     ".cache-loader",

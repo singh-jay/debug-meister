@@ -32,7 +32,7 @@ export const Network = () => {
       }}
     >
       <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-        <h1 className="text-lg font-medium">Network</h1>
+        <h1 className="text-slate-900 text-lg font-medium">Network</h1>
         <div className="flex flex-1 mx-1 sm:mx-3 gap-2 items-center justify-between">
           {openSection && filteredNetworkRequests.length > 0 && (
             <>
@@ -63,7 +63,13 @@ export const Network = () => {
           )}
         </div>
         <span className="transition group-open:rotate-180">
-          <img src={carrotIcon} width={24} height={24} alt="open icon" />
+          <img
+            src={carrotIcon}
+            width={24}
+            height={24}
+            alt="open icon"
+            onClick={() => setOpenSection(!openSection)}
+          />
         </span>
       </summary>
       <div className="group-open:animate-fadeIn mt-3 text-neutral-600 -mx-4">
@@ -101,6 +107,11 @@ export const Network = () => {
             />
           </div>
         ))}
+        {filteredNetworkRequests.length === 0 && (
+          <div className="w-full text-slate-500 dark:text-slate-400 text-center">
+            No Data
+          </div>
+        )}
       </div>
     </details>
   );

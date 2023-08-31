@@ -198,9 +198,10 @@ export default [
       // postcss(),
       postcss({
         config: {
-          path: './postcss.config.js',
+          path: './postcss.config.cjs',
         },
-        minimize: true,
+        // extract: true,
+        minimize: false,
         inject: {
           insertAt: 'top',
         },

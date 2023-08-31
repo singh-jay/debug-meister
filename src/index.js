@@ -1,2 +1,3 @@
 import './styles/globals.css';
-export { DebugProvider } from './context/DebugProvider';
+import DebugProvider from './context/DebugProvider';
+export default DebugProvider;

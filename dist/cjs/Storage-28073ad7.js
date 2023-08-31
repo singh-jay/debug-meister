@@ -1,6 +1,6 @@
 'use strict';
 
-var index = require('./index-332880df.js');
+var index = require('./index-bbc74044.js');
 var React = require('react');
 
 var img$4 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-trash-2'%3e%3cpath d='M3 6h18'%3e%3c/path%3e%3cpath d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6'%3e%3c/path%3e%3cpath d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2'%3e%3c/path%3e%3cline x1='10' x2='10' y1='11' y2='17'%3e%3c/line%3e%3cline x1='14' x2='14' y1='11' y2='17'%3e%3c/line%3e%3c/svg%3e";
@@ -112,7 +112,7 @@ var EditableInput = function(param) {
         value: value,
         onChange: onChange,
         onBlur: onBlur,
-        className: "appearance-none bg-transparent border-none rounded w-full py-1 px-2 focus:outline-none focus:ring-1 focus:ring-slate-500"
+        className: "appearance-none bg-slate-50 text-slate-500 dark:text-slate-400 border-none rounded w-full py-1 px-2 focus:outline-none focus:ring-1 focus:ring-slate-500 focus:bg-slate-100"
     });
 };
 var Table = function(param) {
@@ -217,7 +217,7 @@ var Table = function(param) {
                 return /*#__PURE__*/ index.jsxRuntimeExports.jsxs(React.Fragment, {
                     children: [
                         /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
-                            className: "border-b border-transparent sm:border-slate-200 dark:border-slate-700 p-1 sm:p-4 text-slate-500 dark:text-slate-400",
+                            className: "border-b border-transparent sm:border-slate-200 dark:border-slate-700 p-1 text-left sm:p-4 text-slate-800 dark:text-slate-400",
                             onDoubleClick: function() {
                                 return handleDoubleClick("key_".concat(key), key);
                             },
@@ -240,7 +240,7 @@ var Table = function(param) {
                             }) : key
                         }),
                         /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
-                            className: "relative border-b border-slate-200 dark:border-slate-700 mb-2 sm:mb-0 p-1 sm:p-4 text-slate-500 dark:text-slate-400 overflow-hidden",
+                            className: "relative border-b border-slate-200 dark:border-slate-700 mb-2 sm:mb-0 text-left p-1 sm:p-4 text-slate-800 dark:text-slate-400 overflow-hidden",
                             onDoubleClick: function() {
                                 return handleDoubleClick("value_".concat(key), value);
                             },
@@ -304,11 +304,8 @@ var Table = function(param) {
                 }, "".concat(storageType, "_").concat(key));
             }),
             data.length === 0 && /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
-                className: "",
-                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
-                    className: "text-slate-500 dark:text-slate-400 text-center",
-                    children: "No Data"
-                })
+                className: "w-full text-slate-500 dark:text-slate-400 text-center",
+                children: "No Data"
             })
         ]
     });
@@ -384,7 +381,7 @@ var Input = function(_param) {
             id: id,
             name: name,
             type: "checkbox",
-            className: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600",
+            className: "h-4 w-4 rounded border-slate-300 text-slate-800 focus:ring-slate-600",
             checked: value,
             onChange: onChange
         });
@@ -393,7 +390,7 @@ var Input = function(_param) {
         className: "relative w-full",
         children: [
             /*#__PURE__*/ index.jsxRuntimeExports.jsx("input", _object_spread$1({
-                className: "peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none",
+                className: "peer bg-transparent mt-1 w-full text-slate-800 dark:text-slate-400 border-b-2 border-slate-300 px-0 py-1 placeholder:text-transparent focus:border-slate-500 focus:outline-none",
                 autoComplete: "off",
                 type: type,
                 id: id,
@@ -406,7 +403,7 @@ var Input = function(_param) {
             }, rest)),
             /*#__PURE__*/ index.jsxRuntimeExports.jsx("label", {
                 htmlFor: id,
-                className: "pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800",
+                className: "pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-slate-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-slate-800",
                 children: label
             })
         ]
@@ -416,7 +413,7 @@ var Input = function(_param) {
 var Button = function(param) {
     var label = param.label, _param_variant = param.variant, variant = _param_variant === void 0 ? "success" : _param_variant, onClick = param.onClick;
     return /*#__PURE__*/ index.jsxRuntimeExports.jsx("button", {
-        className: "px-4 py-2 font-semibold text-sm text-white rounded-md shadow-sm ".concat(variant === "success" ? "bg-gray-700" : "bg-red-500"),
+        className: "px-4 py-2 font-semibold text-sm text-white rounded-md shadow-sm ".concat(variant === "success" ? "bg-slate-500" : "bg-rose-600"),
         onClick: onClick,
         children: label
     });
@@ -631,7 +628,7 @@ var Console = function() {
                 className: "flex cursor-pointer list-none items-center justify-between font-medium",
                 children: [
                     /*#__PURE__*/ index.jsxRuntimeExports.jsx("h1", {
-                        className: "text-lg font-medium",
+                        className: "text-slate-900 text-lg font-medium",
                         children: "Console"
                     }),
                     /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
@@ -669,26 +666,35 @@ var Console = function() {
                             src: img,
                             width: 24,
                             height: 24,
-                            alt: "open icon"
+                            alt: "open icon",
+                            onClick: function() {
+                                return setOpenSection(!openSection);
+                            }
                         })
                     })
                 ]
             }),
             /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
                 className: "group-open:animate-fadeIn mt-3 text-neutral-600",
-                children: /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
+                children: /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                     className: "divide-y divide-gray-700",
-                    children: filteredLogs.map(function(log, index$1) {
-                        return /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
-                            className: "py-2 ".concat(getErrorColorClass(log)),
-                            children: log.message.map(function(part, index$1) {
-                                return /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
-                                    className: "break-words",
-                                    children: part.toString()
-                                }, index$1);
-                            })
-                        }, index$1);
-                    })
+                    children: [
+                        filteredLogs.map(function(log, index$1) {
+                            return /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
+                                className: "py-2 ".concat(getErrorColorClass(log)),
+                                children: log.message.map(function(part, index$1) {
+                                    return /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
+                                        className: "break-words",
+                                        children: part.toString()
+                                    }, index$1);
+                                })
+                            }, index$1);
+                        }),
+                        filteredLogs.length === 0 && /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
+                            className: "w-full text-slate-500 dark:text-slate-400 text-center",
+                            children: "No Data"
+                        })
+                    ]
                 })
             })
         ]
@@ -771,7 +777,7 @@ var Network = function() {
                 className: "flex cursor-pointer list-none items-center justify-between font-medium",
                 children: [
                     /*#__PURE__*/ index.jsxRuntimeExports.jsx("h1", {
-                        className: "text-lg font-medium",
+                        className: "text-slate-900 text-lg font-medium",
                         children: "Network"
                     }),
                     /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
@@ -809,52 +815,61 @@ var Network = function() {
                             src: img,
                             width: 24,
                             height: 24,
-                            alt: "open icon"
+                            alt: "open icon",
+                            onClick: function() {
+                                return setOpenSection(!openSection);
+                            }
                         })
                     })
                 ]
             }),
-            /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
+            /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
                 className: "group-open:animate-fadeIn mt-3 text-neutral-600 -mx-4",
-                children: filteredNetworkRequests.map(function(row, index$1) {
-                    return /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
-                        className: "px-4 py-2 ".concat(index$1 % 2 === 0 ? "bg-slate-100" : ""),
-                        children: [
-                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
-                                children: "Url: "
-                            }),
-                            /*#__PURE__*/ index.jsxRuntimeExports.jsx(TableRow$1, {
-                                value: row.request.url.split("/").pop() || "/",
-                                overflowAllowed: false,
-                                parseJSON: false
-                            }),
-                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
-                                children: "Request: "
-                            }),
-                            /*#__PURE__*/ index.jsxRuntimeExports.jsx(TableRow$1, {
-                                src: row.request,
-                                overflowAllowed: false,
-                                parseJSON: false
-                            }),
-                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
-                                children: "Response: "
-                            }),
-                            /*#__PURE__*/ index.jsxRuntimeExports.jsx(TableRow$1, {
-                                src: row.response,
-                                overflowAllowed: false,
-                                parseJSON: false
-                            }),
-                            /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
-                                children: "Time Elapsed: "
-                            }),
-                            /*#__PURE__*/ index.jsxRuntimeExports.jsx(TableRow$1, {
-                                src: row.timeElapsed,
-                                overflowAllowed: false,
-                                parseJSON: false
-                            })
-                        ]
-                    }, index$1);
-                })
+                children: [
+                    filteredNetworkRequests.map(function(row, index$1) {
+                        return /*#__PURE__*/ index.jsxRuntimeExports.jsxs("div", {
+                            className: "px-4 py-2 ".concat(index$1 % 2 === 0 ? "bg-slate-100" : ""),
+                            children: [
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
+                                    children: "Url: "
+                                }),
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx(TableRow$1, {
+                                    value: row.request.url.split("/").pop() || "/",
+                                    overflowAllowed: false,
+                                    parseJSON: false
+                                }),
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
+                                    children: "Request: "
+                                }),
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx(TableRow$1, {
+                                    src: row.request,
+                                    overflowAllowed: false,
+                                    parseJSON: false
+                                }),
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
+                                    children: "Response: "
+                                }),
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx(TableRow$1, {
+                                    src: row.response,
+                                    overflowAllowed: false,
+                                    parseJSON: false
+                                }),
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx("span", {
+                                    children: "Time Elapsed: "
+                                }),
+                                /*#__PURE__*/ index.jsxRuntimeExports.jsx(TableRow$1, {
+                                    src: row.timeElapsed,
+                                    overflowAllowed: false,
+                                    parseJSON: false
+                                })
+                            ]
+                        }, index$1);
+                    }),
+                    filteredNetworkRequests.length === 0 && /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
+                        className: "w-full text-slate-500 dark:text-slate-400 text-center",
+                        children: "No Data"
+                    })
+                ]
             })
         ]
     });
@@ -1060,7 +1075,7 @@ function arrayToJSON(arr) {
     }, {});
 }
 var RenderImage = function(param) {
-    var src = param.src, _param_width = param.width, width = _param_width === void 0 ? 22 : _param_width, _param_height = param.height, height = _param_height === void 0 ? 22 : _param_height, _param_alt = param.alt, alt = _param_alt === void 0 ? "image description" : _param_alt, onClick = param.onClick;
+    var src = param.src, _param_width = param.width, width = _param_width === void 0 ? 22 : _param_width, _param_height = param.height, height = _param_height === void 0 ? 22 : _param_height, _param_alt = param.alt, alt = _param_alt === void 0 ? "image description" : _param_alt, _param_onClick = param.onClick, onClick = _param_onClick === void 0 ? function() {} : _param_onClick;
     return /*#__PURE__*/ index.jsxRuntimeExports.jsx("div", {
         className: "p-1.5 hover:bg-slate-200 rounded-md",
         onClick: function(e) {
@@ -1096,11 +1111,6 @@ var Storage = function() {
         false,
         false
     ]), 2), openAddItem = _useState10[0], setOpenAddItem = _useState10[1];
-    // useEffect(() => {
-    // 	fetch("https://jsonplaceholder.typicode.com/posts/1")
-    // 		.then((response) => response.json())
-    // 		.then((json) => console.log(json));
-    // }, []);
     var handleAddItem = function(storageType, _key, _value) {
         var extras = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : {};
         var _extras_isUpdateFlow = extras.isUpdateFlow, isUpdateFlow = _extras_isUpdateFlow === void 0 ? false : _extras_isUpdateFlow, updateIndex = extras.updateIndex, _extras_checkDuplicateKey = extras.checkDuplicateKey, checkDuplicateKey = _extras_checkDuplicateKey === void 0 ? true : _extras_checkDuplicateKey, deleteKey = extras.deleteKey;
@@ -1287,7 +1297,7 @@ var Storage = function() {
                                     className: "flex gap-3 items-center",
                                     children: [
                                         /*#__PURE__*/ index.jsxRuntimeExports.jsx("h1", {
-                                            className: "text-lg font-medium",
+                                            className: "text-slate-900 text-lg font-medium",
                                             children: "Local Storage"
                                         }),
                                         openSection[0] && /*#__PURE__*/ index.jsxRuntimeExports.jsxs(index.jsxRuntimeExports.Fragment, {
@@ -1333,7 +1343,10 @@ var Storage = function() {
                                         src: img,
                                         width: 24,
                                         height: 24,
-                                        alt: "open icon"
+                                        alt: "open icon",
+                                        onClick: function() {
+                                            return openSectionHandler(0);
+                                        }
                                     })
                                 })
                             ]
@@ -1409,7 +1422,7 @@ var Storage = function() {
                                     className: "flex gap-3 items-center",
                                     children: [
                                         /*#__PURE__*/ index.jsxRuntimeExports.jsx("h1", {
-                                            className: "text-lg font-medium",
+                                            className: "text-slate-900 text-lg font-medium",
                                             children: "Session Storage"
                                         }),
                                         openSection[1] && /*#__PURE__*/ index.jsxRuntimeExports.jsxs(index.jsxRuntimeExports.Fragment, {
@@ -1534,7 +1547,7 @@ var Storage = function() {
                                     className: "flex gap-3 items-center",
                                     children: [
                                         /*#__PURE__*/ index.jsxRuntimeExports.jsx("h1", {
-                                            className: "text-lg font-medium",
+                                            className: "text-slate-900 text-lg font-medium",
                                             children: "Cookies"
                                         }),
                                         openSection[2] && /*#__PURE__*/ index.jsxRuntimeExports.jsxs(index.jsxRuntimeExports.Fragment, {
@@ -1656,4 +1669,4 @@ var Storage = function() {
 };
 
 exports.default = Storage;
-//# sourceMappingURL=Storage-2ec7b7cc.js.map
+//# sourceMappingURL=Storage-28073ad7.js.map

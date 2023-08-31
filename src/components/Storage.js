@@ -35,7 +35,7 @@ const RenderImage = ({
   width = 22,
   height = 22,
   alt = 'image description',
-  onClick,
+  onClick = () => {},
 }) => {
   return (
     <div
@@ -69,12 +69,6 @@ const Storage = () => {
 
   const [openSection, setOpenSection] = useState([true, false, false]);
   const [openAddItem, setOpenAddItem] = useState([false, false, false]);
-
-  // useEffect(() => {
-  // 	fetch("https://jsonplaceholder.typicode.com/posts/1")
-  // 		.then((response) => response.json())
-  // 		.then((json) => console.log(json));
-  // }, []);
 
   const handleAddItem = (storageType, _key, _value, extras = {}) => {
     const {
@@ -215,7 +209,9 @@ const Storage = () => {
         >
           <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
             <div className="flex gap-3 items-center">
-              <h1 className="text-lg font-medium">Local Storage</h1>
+              <h1 className="text-slate-900 text-lg font-medium">
+                Local Storage
+              </h1>
               {openSection[0] && (
                 <>
                   <RenderImage
@@ -252,6 +248,7 @@ const Storage = () => {
                 width={24}
                 height={24}
                 alt="open icon"
+                onClick={() => openSectionHandler(0)}
               />
             </span>
           </summary>
@@ -311,7 +308,9 @@ const Storage = () => {
         >
           <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
             <div className="flex gap-3 items-center">
-              <h1 className="text-lg font-medium">Session Storage</h1>
+              <h1 className="text-slate-900 text-lg font-medium">
+                Session Storage
+              </h1>
               {openSection[1] && (
                 <>
                   <RenderImage
@@ -412,7 +411,7 @@ const Storage = () => {
         >
           <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
             <div className="flex gap-3 items-center">
-              <h1 className="text-lg font-medium">Cookies</h1>
+              <h1 className="text-slate-900 text-lg font-medium">Cookies</h1>
               {openSection[2] && (
                 <>
                   <RenderImage
