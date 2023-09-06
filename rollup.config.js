@@ -129,7 +129,6 @@ export default [
         // dynamicImport: true,
         exports: 'named',
         entryFileNames: '[name].mjs',
-
         chunkFileNames: '[name]-[hash].mjs',
         globals: {
           react: 'React', // Specify the global variable name for React
@@ -155,7 +154,7 @@ export default [
           exclude: /node_modules/, // default
           // tsconfig: "tsconfig.json", // default
           // And add your swc configuration here!
-          minify: false,
+          minify: true,
           sourceMaps: true,
           inlineSourcesContent: true,
           jsc: {
