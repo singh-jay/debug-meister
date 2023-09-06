@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var index = require('./index-bbc74044.js');
+var index = require('./index-0d0a04fa.js');
 require('react');
 
 

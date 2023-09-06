@@ -97,33 +97,32 @@ const Console = () => {
             </>
           )}
         </div>
-        <span className="transition group-open:rotate-180">
+        <span className="transition group-open:rotate-180 p-1 rounded-full hover:bg-slate-200">
           <img
             src={carrotIcon}
             width={24}
             height={24}
             alt="open icon"
-            onClick={() => setOpenSection(!openSection)}
+            onClick={(e) => {
+              e.preventDefault();
+              setOpenSection(!openSection);
+            }}
           />
         </span>
       </summary>
       <div className="group-open:animate-fadeIn mt-3 text-neutral-600">
-        <div className="divide-y divide-gray-700">
+        <div className="divide-y divide-slate-300 border-t-2 border-slate-200 -mb-2 text-left">
           {filteredLogs.map((log, index) => (
             <div key={index} className={`py-2 ${getErrorColorClass(log)}`}>
               {log.message.map((part, index) => (
-                <span
-                  key={index}
-                  className="break-words"
-                  // dangerouslySetInnerHTML={{ __html: Prism.highlight(part.toString(), Prism.languages.javascript, "javascript") }}
-                >
+                <span key={index} className="break-words">
                   {part.toString()}
                 </span>
               ))}
             </div>
           ))}
           {filteredLogs.length === 0 && (
-            <div className="w-full text-slate-500 dark:text-slate-400 text-center">
+            <div className="w-full border-b border-transparent sm:border-slate-200 p-2 sm:col-span-2 text-slate-500 dark:text-slate-400 text-center">
               No Data
             </div>
           )}

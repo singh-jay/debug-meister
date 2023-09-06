@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useCallback, useEffect, useState } from 'react';
 import { DebugContext } from './DebugContext';
 import withNetworkLogger from '../components/HOC/withNetworkLogger';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import Table from './Table';
 import Input from './Input';
 import Button from './Button';
@@ -6,10 +6,13 @@ import Button from './Button';
 import plusIcon from '../icons/svg/plus.svg';
 import minusIcon from '../icons/svg/minus.svg';
 import trashIcon from '../icons/svg/trash.svg';
+import checkIcon from '../icons/svg/check.svg';
 import copyIcon from '../icons/svg/copy.svg';
 import carrotIcon from '../icons/svg/carrot.svg';
+
 import Console from './Console';
 import { Network } from './Network';
+import { copyToClipboard, parseJSONValue } from '../utils';
 
 const parseCookies = () => {
   const parsedCookies = {};
@@ -25,7 +28,7 @@ const parseCookies = () => {
 
 function arrayToJSON(arr) {
   return arr.reduce((obj, item) => {
-    obj[item[0]] = item[1];
+    obj[item[0]] = parseJSONValue(item[1]);
     return obj;
   }, {});
 }
@@ -36,17 +39,27 @@ const RenderImage = ({
   height = 22,
   alt = 'image description',
   onClick = () => {},
+  roundedBg = false,
+  imgClassName = '',
 }) => {
   return (
     <div
-      className="p-1.5 hover:bg-slate-200 rounded-md"
+      className={`hover:bg-slate-200 ${
+        roundedBg ? 'p-1 rounded-full' : 'p-1.5 rounded-md'
+      }`}
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        onClick();
+        onClick(e);
       }}
     >
-      <img src={src} width={width} height={height} alt={alt} />
+      <img
+        src={src}
+        className={imgClassName}
+        width={width}
+        height={height}
+        alt={alt}
+      />
     </div>
   );
 };
@@ -69,7 +82,7 @@ const Storage = () => {
 
   const [openSection, setOpenSection] = useState([true, false, false]);
   const [openAddItem, setOpenAddItem] = useState([false, false, false]);
-
+  const [copying, setCopying] = useState([false, false, false]);
   const handleAddItem = (storageType, _key, _value, extras = {}) => {
     const {
       isUpdateFlow = false,
@@ -187,19 +200,30 @@ const Storage = () => {
     });
   };
 
-  const copyContent = async (text) => {
+  const copyContent = (text) => {
     const json = arrayToJSON(text);
-    try {
-      await navigator.clipboard.writeText(json);
-      console.warn('text copied: ', text);
-    } catch (err) {
-      console.error('Failed to copy: ', err);
-    }
+    copyToClipboard(JSON.stringify(json));
   };
 
+  const handleCopy = useCallback((index, content) => {
+    copyContent(content);
+    setCopying((oldState) => {
+      const newState = [...oldState];
+      newState[index] = true;
+      return newState;
+    });
+    setTimeout(() => {
+      setCopying((oldState) => {
+        const newState = [...oldState];
+        newState[index] = false;
+        return newState;
+      });
+    }, 1500);
+  }, []);
+
   return (
-    <div className="grid grid-cols-1 divide-y divide-neutral-300">
-      <div className="pb-4">
+    <div className="grid grid-cols-1 divide-y divide-slate-300 mt-4">
+      <div className="pb-2">
         <details
           className="group"
           open={openSection[0]}
@@ -231,11 +255,13 @@ const Storage = () => {
                         onClick={() => handleClearAll('localStorage')}
                       />
                       <RenderImage
-                        src={copyIcon}
+                        src={copying[0] ? checkIcon : copyIcon}
+                        imgClassName={copying[0] ? 'animate-copy' : ''}
+                        key="check"
                         width={22}
                         height={22}
                         alt="copy all"
-                        onClick={() => copyContent(localStorageItems)}
+                        onClick={() => handleCopy(0, localStorageItems)}
                       />
                     </>
                   )}
@@ -248,7 +274,8 @@ const Storage = () => {
                 width={24}
                 height={24}
                 alt="open icon"
-                onClick={() => openSectionHandler(0)}
+                onClick={() => openSectionHandler(0, !openSection[0])}
+                roundedBg={true}
               />
             </span>
           </summary>
@@ -268,7 +295,7 @@ const Storage = () => {
                 }}
                 data-storage-type="localStorage"
               >
-                <div className="mt-3 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-7">
+                <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-7">
                   <div className="sm:col-span-3">
                     <Input
                       id="localKey"
@@ -298,7 +325,7 @@ const Storage = () => {
           </div>
         </details>
       </div>
-      <div className="py-4">
+      <div className="py-2">
         <details
           className="group"
           open={openSection[1]}
@@ -330,11 +357,12 @@ const Storage = () => {
                         onClick={() => handleClearAll('sessionStorage')}
                       />
                       <RenderImage
-                        src={copyIcon}
+                        src={copying[1] ? checkIcon : copyIcon}
+                        imgClassName={copying[1] ? 'animate-copy' : ''}
                         width={22}
                         height={22}
                         alt="copy all"
-                        onClick={() => copyContent(sessionStorageItems)}
+                        onClick={() => handleCopy(1, sessionStorageItems)}
                       />
                     </>
                   )}
@@ -347,7 +375,8 @@ const Storage = () => {
                 width={24}
                 height={24}
                 alt="open icon"
-                onClick={() => openSectionHandler(1)}
+                onClick={() => openSectionHandler(1, !openSection[1])}
+                roundedBg={true}
               />
             </span>
           </summary>
@@ -401,7 +430,7 @@ const Storage = () => {
           </div>
         </details>
       </div>
-      <div className="py-4">
+      <div className="py-2">
         <details
           className="group"
           open={openSection[2]}
@@ -431,11 +460,12 @@ const Storage = () => {
                         onClick={() => handleClearAllCookies()}
                       />
                       <RenderImage
-                        src={copyIcon}
+                        src={copying[2] ? checkIcon : copyIcon}
+                        imgClassName={copying[2] ? 'animate-copy' : ''}
                         width={22}
                         height={22}
                         alt="copy all"
-                        onClick={() => copyContent(cookieItems)}
+                        onClick={() => handleCopy(2, cookieItems)}
                       />
                     </>
                   )}
@@ -448,7 +478,8 @@ const Storage = () => {
                 width={24}
                 height={24}
                 alt="open icon"
-                onClick={() => openSectionHandler(2)}
+                onClick={() => openSectionHandler(2, !openSection[2])}
+                roundedBg={true}
               />
             </span>
           </summary>
@@ -498,10 +529,10 @@ const Storage = () => {
           </div>
         </details>
       </div>
-      <div className="py-4">
+      <div className="py-2">
         <Console />
       </div>
-      <div className="py-4">
+      <div className="py-2">
         <Network />
       </div>
     </div>

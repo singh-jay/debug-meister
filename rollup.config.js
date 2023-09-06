@@ -128,6 +128,9 @@ export default [
         // inlineDynamicImports: true,
         // dynamicImport: true,
         exports: 'named',
+        entryFileNames: '[name].mjs',
+
+        chunkFileNames: '[name]-[hash].mjs',
         globals: {
           react: 'React', // Specify the global variable name for React
         },
@@ -136,7 +139,6 @@ export default [
     external: Object.keys(packageJson.peerDependencies || {}),
     plugins: [
       replace({
-        'process.env.NODE_ENV': JSON.stringify('production'),
         preventAssignment: true,
       }),
       nodeResolve({
@@ -185,12 +187,6 @@ export default [
         }),
       ),
       swcPreserveDirectives(),
-      // babel({
-      //   include: 'src/**/*',
-      //   exclude: '**/node_modules/**',
-      //   babelHelpers: 'runtime',
-      //   extensions,
-      // }),
       dynamicImportVars({
         include: ['*.js'],
       }),
@@ -201,7 +197,7 @@ export default [
           path: './postcss.config.cjs',
         },
         // extract: true,
-        minimize: false,
+        minimize: true,
         inject: {
           insertAt: 'top',
         },

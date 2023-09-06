@@ -6,7 +6,6 @@ import TableRow from './TableRow';
 
 export const Network = () => {
   const { networkRequests, clearNetworkRequests } = useDebugContext();
-
   const [openSection, setOpenSection] = useState(false);
   const [filter, setFilter] = useState('');
   const deferredFilterValue = useDeferredValue(filter);
@@ -62,56 +61,61 @@ export const Network = () => {
             </>
           )}
         </div>
-        <span className="transition group-open:rotate-180">
+        <span className="transition group-open:rotate-180 p-1 rounded-full hover:bg-slate-200">
           <img
             src={carrotIcon}
             width={24}
             height={24}
             alt="open icon"
-            onClick={() => setOpenSection(!openSection)}
+            onClick={(e) => {
+              e.preventDefault();
+              setOpenSection(!openSection);
+            }}
           />
         </span>
       </summary>
-      <div className="group-open:animate-fadeIn mt-3 text-neutral-600 -mx-4">
-        {filteredNetworkRequests.map((row, index) => (
-          <div
-            key={index}
-            className={`px-4 py-2 ${index % 2 === 0 ? 'bg-slate-100' : ''}`}
-          >
-            <span>Url: </span>
-            <TableRow
-              value={row.request.url.split('/').pop() || '/'}
-              overflowAllowed={false}
-              parseJSON={false}
-            />
+      <div className="group-open:animate-fadeIn mt-3 text-neutral-600 text-left">
+        <div className="divide-y divide-slate-300 border-t-2 border-slate-200 -mb-2">
+          {filteredNetworkRequests.map((row, index) => (
+            <div
+              key={index}
+              className={`px-4 py-2 ${index % 2 === 0 ? 'bg-slate-100' : ''}`}
+            >
+              <span>Url: </span>
+              <TableRow
+                value={row.request.url.split('/').pop() || '/'}
+                overflowAllowed={false}
+                parseJSON={false}
+              />
 
-            <span>Request: </span>
-            <TableRow
-              src={row.request}
-              overflowAllowed={false}
-              parseJSON={false}
-            />
+              <span>Request: </span>
+              <TableRow
+                value={row.request}
+                overflowAllowed={false}
+                parseJSON={false}
+              />
 
-            <span>Response: </span>
-            <TableRow
-              src={row.response}
-              overflowAllowed={false}
-              parseJSON={false}
-            />
+              <span>Response: </span>
+              <TableRow
+                value={row.response}
+                overflowAllowed={false}
+                parseJSON={false}
+              />
 
-            <span>Time Elapsed: </span>
-            <TableRow
-              src={row.timeElapsed}
-              overflowAllowed={false}
-              parseJSON={false}
-            />
-          </div>
-        ))}
-        {filteredNetworkRequests.length === 0 && (
-          <div className="w-full text-slate-500 dark:text-slate-400 text-center">
-            No Data
-          </div>
-        )}
+              <span>Time Elapsed: </span>
+              <TableRow
+                value={row.timeElapsed}
+                overflowAllowed={false}
+                parseJSON={false}
+              />
+            </div>
+          ))}
+          {filteredNetworkRequests.length === 0 && (
+            <div className="w-full border-b-2 border-transparent sm:border-slate-200 p-2 sm:col-span-2 text-slate-500 dark:text-slate-400 text-center">
+              No Data
+            </div>
+          )}
+        </div>
       </div>
     </details>
   );

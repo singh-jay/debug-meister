@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDebugContext } from '../../context/DebugContext';
+import {
+  convertMillisecondsToHumanReadableFormat,
+  parseJSONValue,
+} from '../../utils';
 
 const withNetworkLogger = (WrappedComponent) => {
   const NetworkLogger = (props) => {
@@ -23,7 +27,9 @@ const withNetworkLogger = (WrappedComponent) => {
           }
           // console.log(request, response);
           if (request) {
-            const timeElapsed = `${Date.now() - request.startTime} ms`;
+            const timeElapsed = convertMillisecondsToHumanReadableFormat(
+              Date.now() - request.startTime,
+            );
             const responseData = {
               status: response ? response.status : null,
               statusText: response ? response.statusText : null,
@@ -34,10 +40,12 @@ const withNetworkLogger = (WrappedComponent) => {
                   )
                 : null,
             };
+
             const contentType = responseData.headers
               ? responseData.headers['content-type']
               : '';
-            // console.log("contentType", contentType);
+            console.log('contentType', contentType);
+            console.log('response', response);
             if (contentType && contentType.includes('application/json')) {
               responseData.body = response ? await response.json() : null;
             } else {
@@ -54,7 +62,7 @@ const withNetworkLogger = (WrappedComponent) => {
             });
           }
         } catch (error) {
-          console.log('erer', error);
+          console.error('error', error);
           throw error;
         }
       },
@@ -93,6 +101,7 @@ const withNetworkLogger = (WrappedComponent) => {
           });
       };
 
+      const originalOpen = window.XMLHttpRequest.prototype.open;
       const originalSend = window.XMLHttpRequest.prototype.send;
 
       const handleXmlHttpRequest = (xhr, body) => {
@@ -102,11 +111,10 @@ const withNetworkLogger = (WrappedComponent) => {
         const request = {
           method,
           url,
-          body: JSON.parse(body),
+          body: parseJSONValue(body),
           startTime,
         };
         setRequests((prevRequests) => new Map(prevRequests.set(request, null)));
-
         xhr.addEventListener('load', () => {
           const xhrHeadersString = xhr.getAllResponseHeaders();
           const xhrHeadersArray = xhrHeadersString
@@ -119,6 +127,15 @@ const withNetworkLogger = (WrappedComponent) => {
             const value = parts.join(': ').trim();
             fetchHeaders.push([name, value]);
           });
+          // Get the request URL
+          const requrl = xhr.url;
+
+          // Get the request method
+          const method = xhr.method;
+
+          // Get the request body
+          const body = xhr.responseText;
+          console.log('xhr', xhr, requrl, method, body);
 
           const response = {
             status: xhr.status,
@@ -127,7 +144,7 @@ const withNetworkLogger = (WrappedComponent) => {
             ok: xhr.status >= 200 && xhr.status < 300,
             headers: fetchHeaders,
             request,
-            json: async () => JSON.parse(xhr.response),
+            json: async () => parseJSONValue(xhr.response),
             text: async () => xhr.responseText,
           };
           handleNetworkResponse(response);
@@ -143,13 +160,20 @@ const withNetworkLogger = (WrappedComponent) => {
       };
 
       window.XMLHttpRequest.prototype.send = function (body = null) {
+        console.log('this', this);
         this._url = this._url || window.location.href;
         this._method = this._method || 'GET';
         handleXmlHttpRequest(this, body);
       };
+      window.XMLHttpRequest.prototype.open = function (...args) {
+        this._url = args[1] || window.location.href;
+        this._method = args[0] || 'GET';
+        originalOpen.apply(this, args);
+      };
 
       return () => {
         window.fetch = originalFetch;
+        window.XMLHttpRequest.prototype.open = originalOpen;
         window.XMLHttpRequest.prototype.send = originalSend;
       };
     }, [handleNetworkResponse]);

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import trashIcon from '../icons/svg/trash.svg';
+import checkIcon from '../icons/svg/check.svg';
 import copyIcon from '../icons/svg/copy.svg';
 import { useIsMobile } from '../hooks/useIsMobile';
 import TableRow from './TableRow';
@@ -11,7 +12,7 @@ const EditableInput = ({ value, onChange, onBlur }) => (
     value={value}
     onChange={onChange}
     onBlur={onBlur}
-    className="appearance-none bg-slate-50 text-slate-500 dark:text-slate-400 border-none rounded w-full py-1 px-2 focus:outline-none focus:ring-1 focus:ring-slate-500 focus:bg-slate-100"
+    className="appearance-none bg-slate-50 text-slate-500 dark:text-slate-400 border border-slate-300 rounded w-full py-1 px-2 focus:outline-none  focus:border-slate-500 focus:bg-slate-100"
   />
 );
 
@@ -25,6 +26,7 @@ const Table = ({
   const [editedIndex, setEditedIndex] = useState('');
   const [editedValue, setEditedValue] = useState('');
   const [showActionButtons, setShowActionButtons] = useState('');
+  const [copying, setCopying] = useState('');
   const [_isMobile, setIsMobile] = useState(true);
   const [mounted, setMounted] = useState(false);
   const isMobile = useIsMobile();
@@ -61,6 +63,7 @@ const Table = ({
     const scrollHandler = () => {
       if (showActionButtons !== '') {
         setShowActionButtons('');
+        setCopying('');
       }
     };
 
@@ -112,22 +115,29 @@ const Table = ({
   const onPointerHandler = (val) => {
     if (!isMobile) {
       setShowActionButtons(val);
+      if (!val) setCopying('');
     }
   };
+
+  const handleCopy = useCallback((key, value) => {
+    copyContent([[key, value]]);
+    setCopying(key);
+    setTimeout(() => {
+      setCopying((v) => (v ? '' : v));
+    }, 1500);
+  }, []);
 
   if (!mounted) return null;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-auto gap-x-3 sm:gap-x-0 overflow-hidden">
+    <div className="grid grid-cols-1 sm:grid-cols-auto gap-x-3 sm:gap-x-0 overflow-hidden border-t-2 border-slate-200 -mb-2">
       {/* <div className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Key</div>
 			<div className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Value</div> */}
       {data.map(([key, value]) => {
-        // const formatter = new JSONFormatter(value);
-        // console.log("formatter", formatter, formatter.render());
         return (
           <React.Fragment key={`${storageType}_${key}`}>
             <div
-              className="border-b border-transparent sm:border-slate-200 dark:border-slate-700 p-1 text-left sm:p-4 text-slate-800 dark:text-slate-400"
+              className="border-b border-transparent sm:border-slate-200 px-1 py-0.5 text-left sm:p-4 text-slate-800 dark:text-slate-400"
               onDoubleClick={() => handleDoubleClick(`key_${key}`, key)}
               onPointerEnter={() => onPointerHandler(`${key}`)}
               onPointerLeave={() => onPointerHandler('')}
@@ -145,7 +155,7 @@ const Table = ({
               )}
             </div>
             <div
-              className="relative border-b border-slate-200 dark:border-slate-700 mb-2 sm:mb-0 text-left p-1 sm:p-4 text-slate-800 dark:text-slate-400 overflow-hidden"
+              className="relative border-b border-slate-200 mb-2 sm:mb-0 text-left px-1 py-0.5 sm:p-4 text-slate-800 dark:text-slate-400 overflow-hidden"
               onDoubleClick={() => handleDoubleClick(`value_${key}`, value)}
               onPointerEnter={() => onPointerHandler(`${key}`)}
               onPointerLeave={() => onPointerHandler('')}
@@ -162,7 +172,7 @@ const Table = ({
                 <TableRow value={value} />
               )}
               {showActionButtons === `${key}` && editedIndex === '' && (
-                <div className="absolute bottom-1 sm:bottom-3 right-0 flex gap-1">
+                <div className="absolute z-10 bottom-1 sm:bottom-3 right-0 flex gap-1">
                   <div
                     className="p-1.5 bg-slate-200 rounded-md"
                     onClick={() => handleDeleteItem(storageType, key)}
@@ -176,9 +186,16 @@ const Table = ({
                   </div>
                   <div
                     className="p-1.5 bg-slate-200 rounded-md"
-                    onClick={() => copyContent([[key, value]])}
+                    onClick={() => handleCopy(key, value)}
                   >
-                    <img src={copyIcon} width={17} height={17} alt="copy row" />
+                    <img
+                      src={copying === key ? checkIcon : copyIcon}
+                      className={copying === key ? 'animate-copy' : ''}
+                      key="check"
+                      width={17}
+                      height={17}
+                      alt="copy row"
+                    />
                   </div>
                 </div>
               )}
@@ -187,7 +204,7 @@ const Table = ({
         );
       })}
       {data.length === 0 && (
-        <div className="w-full text-slate-500 dark:text-slate-400 text-center">
+        <div className="w-full border-b border-transparent sm:border-slate-200 p-2 sm:col-span-2 text-slate-500 dark:text-slate-400 text-center">
           No Data
         </div>
       )}
