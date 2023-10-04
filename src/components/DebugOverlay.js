@@ -1,24 +1,43 @@
-import crossIcon from '../icons/svg/cross.svg';
-import settingsIcon from '../icons/svg/settings.svg';
-import React, { Suspense, lazy, useEffect, useState } from 'react';
+import * as React from "react";
+import crossIcon from "../icons/svg/cross.svg";
+import settingsIcon from "../icons/svg/settings.svg";
 
-const Storage = lazy(() =>
-  import(/* webpackChunkName: "DebugOverlayChunk" */ './Storage'),
+import "../styles/globals.css";
+
+const Storage = React.lazy(
+  () => import(/* webpackChunkName: "DebugOverlayChunk" */ "./Storage")
 );
 
-function DebugOverlay() {
-  const [mounted, setMounted] = useState(false);
-  const [openPopup, setOpenPopup] = useState(false);
+const getOverlayPosition = (position = "bottom-right") => {
+  switch (position) {
+    case "top-left":
+      return "top-0 left-0";
+    case "top-right":
+      return "top-0 right-0";
+    case "bottom-left":
+      return "bottom-0 left-0";
+    default:
+      return "bottom-0 right-0";
+  }
+};
 
-  useEffect(() => {
+export default function DebugOverlay(props) {
+  const [mounted, setMounted] = React.useState(false);
+  const [openPopup, setOpenPopup] = React.useState(false);
+
+  React.useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) return <></>;
 
   return openPopup ? (
-    <Suspense fallback={<></>}>
-      <div className="fixed bottom-0 max-h-mobile sm:max-h-[calc(100vh-theme(space.8))] overflow-auto no-scrollbar right-0 w-mobile sm:w-1/2 sm:m-4 bg-white shadow-xl rounded-lg z-50">
+    <React.Suspense>
+      <div
+        className={`max-h-[100lvh] sm:max-h-[calc(100vh-theme(space.8))] overflow-auto no-scrollbar w-[100lvw] sm:w-1/2 sm:m-4 bg-white shadow-xl rounded-lg z-50 fixed ${getOverlayPosition(
+          props.position
+        )}`}
+      >
         <div className="sticky top-0 z-10 text-center bg-white/50 backdrop-blur drop-shadow-xl py-5">
           <div className="relative">
             <h1 className="text-slate-900 text-xl font-medium">App Settings</h1>
@@ -41,9 +60,13 @@ function DebugOverlay() {
           <Storage />
         </div>
       </div>
-    </Suspense>
+    </React.Suspense>
   ) : (
-    <div className="fixed bottom-0 right-0 m-5 z-50">
+    <div
+      className={`m-5 z-50 fixed w-8 h-8 rounded-full flex justify-center items-center bg-slate-200 hover:bg-slate-300 ${getOverlayPosition(
+        props.position
+      )}`}
+    >
       <img
         src={settingsIcon}
         width={24}
@@ -54,5 +77,3 @@ function DebugOverlay() {
     </div>
   );
 }
-
-export default DebugOverlay;

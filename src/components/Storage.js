@@ -1,25 +1,26 @@
-import React, { useCallback, useRef, useState } from 'react';
-import Table from './Table';
-import Input from './Input';
-import Button from './Button';
+import * as React from "react";
+import Button from "./Button";
+import Input from "./Input";
+import Table from "./Table";
 
-import plusIcon from '../icons/svg/plus.svg';
-import minusIcon from '../icons/svg/minus.svg';
-import trashIcon from '../icons/svg/trash.svg';
-import checkIcon from '../icons/svg/check.svg';
-import copyIcon from '../icons/svg/copy.svg';
-import carrotIcon from '../icons/svg/carrot.svg';
+import carrotIcon from "../icons/svg/carrot.svg";
+import checkIcon from "../icons/svg/check.svg";
+import copyIcon from "../icons/svg/copy.svg";
+import minusIcon from "../icons/svg/minus.svg";
+import plusIcon from "../icons/svg/plus.svg";
+import trashIcon from "../icons/svg/trash.svg";
 
-import Console from './Console';
-import { Network } from './Network';
-import { copyToClipboard, parseJSONValue } from '../utils';
+import { copyToClipboard, parseJSONValue } from "../utils";
+import Console from "./Console";
+import { Network } from "./Network";
+// import ScreenRecordingContainer from "./ScreenRecording/ScreenRecordingContainer";
 
 const parseCookies = () => {
   const parsedCookies = {};
   if (document.cookie) {
-    const cookies = document.cookie.split('; ');
+    const cookies = document.cookie.split("; ");
     cookies.forEach((cookie) => {
-      const [key, value] = cookie.split('=');
+      const [key, value] = cookie.split("=");
       parsedCookies[key] = value;
     });
   }
@@ -37,15 +38,15 @@ const RenderImage = ({
   src,
   width = 22,
   height = 22,
-  alt = 'image description',
+  alt = "image description",
   onClick = () => {},
   roundedBg = false,
-  imgClassName = '',
+  imgClassName = ""
 }) => {
   return (
     <div
       className={`hover:bg-slate-200 ${
-        roundedBg ? 'p-1 rounded-full' : 'p-1.5 rounded-md'
+        roundedBg ? "p-1 rounded-full" : "p-1.5 rounded-md"
       }`}
       onClick={(e) => {
         e.preventDefault();
@@ -65,35 +66,35 @@ const RenderImage = ({
 };
 
 const Storage = () => {
-  const [localStorageItems, setLocalStorageItems] = useState(
-    Object.entries(localStorage),
+  const [localStorageItems, setLocalStorageItems] = React.useState(
+    Object.entries(localStorage)
   );
-  const [sessionStorageItems, setSessionStorageItems] = useState(
-    Object.entries(sessionStorage),
+  const [sessionStorageItems, setSessionStorageItems] = React.useState(
+    Object.entries(sessionStorage)
   );
-  const [cookieItems, setCookieItems] = useState(parseCookies());
+  const [cookieItems, setCookieItems] = React.useState(parseCookies());
 
-  const [newLocalKey, setNewLocalKey] = useState('');
-  const [newLocalValue, setNewLocalValue] = useState('');
-  const [newSessionKey, setNewSessionKey] = useState('');
-  const [newSessionValue, setNewSessionValue] = useState('');
-  const [newCookieKey, setNewCookieKey] = useState('');
-  const [newCookieValue, setNewCookieValue] = useState('');
+  const [newLocalKey, setNewLocalKey] = React.useState("");
+  const [newLocalValue, setNewLocalValue] = React.useState("");
+  const [newSessionKey, setNewSessionKey] = React.useState("");
+  const [newSessionValue, setNewSessionValue] = React.useState("");
+  const [newCookieKey, setNewCookieKey] = React.useState("");
+  const [newCookieValue, setNewCookieValue] = React.useState("");
 
-  const [openSection, setOpenSection] = useState([true, false, false]);
-  const [openAddItem, setOpenAddItem] = useState([false, false, false]);
-  const [copying, setCopying] = useState([false, false, false]);
+  const [openSection, setOpenSection] = React.useState([true, false, false]);
+  const [openAddItem, setOpenAddItem] = React.useState([false, false, false]);
+  const [copying, setCopying] = React.useState([false, false, false]);
   const handleAddItem = (storageType, _key, _value, extras = {}) => {
     const {
       isUpdateFlow = false,
       updateIndex,
       checkDuplicateKey = true,
-      deleteKey,
+      deleteKey
     } = extras;
 
     if (!_key || !_value) return;
     const storageItems =
-      storageType === 'localStorage' ? localStorageItems : sessionStorageItems;
+      storageType === "localStorage" ? localStorageItems : sessionStorageItems;
 
     if (checkDuplicateKey && storageItems.some(([key]) => key === _key)) {
       return;
@@ -104,13 +105,13 @@ const Storage = () => {
     } else {
       updatedItems.push([_key, _value]);
     }
-    if (storageType === 'localStorage') {
+    if (storageType === "localStorage") {
       localStorage.setItem(_key, _value);
       if (deleteKey) localStorage.removeItem(deleteKey);
       setLocalStorageItems([...updatedItems]);
       if (!isUpdateFlow) {
-        setNewLocalKey('');
-        setNewLocalValue('');
+        setNewLocalKey("");
+        setNewLocalValue("");
         openAddItemHandler(0);
       }
     } else {
@@ -118,15 +119,15 @@ const Storage = () => {
       if (deleteKey) sessionStorage.removeItem(deleteKey);
       setSessionStorageItems([...updatedItems]);
       if (!isUpdateFlow) {
-        setNewSessionKey('');
-        setNewSessionValue('');
+        setNewSessionKey("");
+        setNewSessionValue("");
         openAddItemHandler(1);
       }
     }
   };
 
   const handleDeleteItem = (storageType, key) => {
-    if (storageType === 'localStorage') {
+    if (storageType === "localStorage") {
       localStorage.removeItem(key);
       setLocalStorageItems(localStorageItems.filter(([k]) => k !== key));
     } else {
@@ -136,7 +137,7 @@ const Storage = () => {
   };
 
   const handleClearAll = (storageType) => {
-    if (storageType === 'localStorage') {
+    if (storageType === "localStorage") {
       localStorage.clear();
       setLocalStorageItems([]);
     } else {
@@ -160,8 +161,8 @@ const Storage = () => {
       document.cookie = `${deleteKey}=; expires=Thu, 01 Jan 1970 00:00:00 UTC`;
     setCookieItems([...updatedItems]);
     if (!isUpdateFlow) {
-      setNewCookieKey('');
-      setNewCookieValue('');
+      setNewCookieKey("");
+      setNewCookieValue("");
       openAddItemHandler(2);
     }
   };
@@ -174,9 +175,9 @@ const Storage = () => {
 
   // Handler for clearing all cookies
   const handleClearAllCookies = () => {
-    document.cookie.split(';').forEach((c) => {
+    document.cookie.split(";").forEach((c) => {
       document.cookie = c
-        .replace(/^ +/, '')
+        .replace(/^ +/, "")
         .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
     });
     setCookieItems([]);
@@ -205,7 +206,7 @@ const Storage = () => {
     copyToClipboard(JSON.stringify(json));
   };
 
-  const handleCopy = useCallback((index, content) => {
+  const handleCopy = React.useCallback((index, content) => {
     copyContent(content);
     setCopying((oldState) => {
       const newState = [...oldState];
@@ -252,11 +253,11 @@ const Storage = () => {
                         width={22}
                         height={22}
                         alt="clear all"
-                        onClick={() => handleClearAll('localStorage')}
+                        onClick={() => handleClearAll("localStorage")}
                       />
                       <RenderImage
                         src={copying[0] ? checkIcon : copyIcon}
-                        imgClassName={copying[0] ? 'animate-copy' : ''}
+                        imgClassName={copying[0] ? "animate-copy-button" : ""}
                         key="check"
                         width={22}
                         height={22}
@@ -291,7 +292,7 @@ const Storage = () => {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  handleAddItem('localStorage', newLocalKey, newLocalValue);
+                  handleAddItem("localStorage", newLocalKey, newLocalValue);
                 }}
                 data-storage-type="localStorage"
               >
@@ -354,11 +355,11 @@ const Storage = () => {
                         width={22}
                         height={22}
                         alt="clear all"
-                        onClick={() => handleClearAll('sessionStorage')}
+                        onClick={() => handleClearAll("sessionStorage")}
                       />
                       <RenderImage
                         src={copying[1] ? checkIcon : copyIcon}
-                        imgClassName={copying[1] ? 'animate-copy' : ''}
+                        imgClassName={copying[1] ? "animate-copy-button" : ""}
                         width={22}
                         height={22}
                         alt="copy all"
@@ -393,9 +394,9 @@ const Storage = () => {
                 onSubmit={(e) => {
                   e.preventDefault();
                   handleAddItem(
-                    'sessionStorage',
+                    "sessionStorage",
                     newSessionKey,
-                    newSessionValue,
+                    newSessionValue
                   );
                 }}
                 data-storage-type="sessionStorage"
@@ -461,7 +462,7 @@ const Storage = () => {
                       />
                       <RenderImage
                         src={copying[2] ? checkIcon : copyIcon}
-                        imgClassName={copying[2] ? 'animate-copy' : ''}
+                        imgClassName={copying[2] ? "animate-copy-button" : ""}
                         width={22}
                         height={22}
                         alt="copy all"
@@ -495,7 +496,7 @@ const Storage = () => {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  handleAddCookie('cookie', newCookieKey, newCookieValue);
+                  handleAddCookie("cookie", newCookieKey, newCookieValue);
                 }}
               >
                 <div className="mt-3 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-7">
@@ -535,6 +536,9 @@ const Storage = () => {
       <div className="py-2">
         <Network />
       </div>
+      {/* <div className="py-2">
+        <ScreenRecordingContainer />
+      </div> */}
     </div>
   );
 };

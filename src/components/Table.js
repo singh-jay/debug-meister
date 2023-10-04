@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import * as React from "react";
 
-import trashIcon from '../icons/svg/trash.svg';
-import checkIcon from '../icons/svg/check.svg';
-import copyIcon from '../icons/svg/copy.svg';
-import { useIsMobile } from '../hooks/useIsMobile';
-import TableRow from './TableRow';
+import { useIsMobile } from "../hooks/useIsMobile";
+import checkIcon from "../icons/svg/check.svg";
+import copyIcon from "../icons/svg/copy.svg";
+import trashIcon from "../icons/svg/trash.svg";
+import TableRow from "./TableRow";
 
 const EditableInput = ({ value, onChange, onBlur }) => (
   <input
@@ -21,18 +21,16 @@ const Table = ({
   storageType,
   handleAddItem,
   handleDeleteItem,
-  copyContent,
+  copyContent
 }) => {
-  const [editedIndex, setEditedIndex] = useState('');
-  const [editedValue, setEditedValue] = useState('');
-  const [showActionButtons, setShowActionButtons] = useState('');
-  const [copying, setCopying] = useState('');
-  const [_isMobile, setIsMobile] = useState(true);
-  const [mounted, setMounted] = useState(false);
+  const [editedIndex, setEditedIndex] = React.useState("");
+  const [editedValue, setEditedValue] = React.useState("");
+  const [showActionButtons, setShowActionButtons] = React.useState("");
+  const [copying, setCopying] = React.useState("");
+  const [mounted, setMounted] = React.useState(false);
   const isMobile = useIsMobile();
-  // console.log("isMobile", isMobile);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setMounted(true);
   }, []);
 
@@ -59,18 +57,18 @@ const Table = ({
   // 	};
   // }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const scrollHandler = () => {
-      if (showActionButtons !== '') {
-        setShowActionButtons('');
-        setCopying('');
+      if (showActionButtons !== "") {
+        setShowActionButtons("");
+        setCopying("");
       }
     };
 
-    window.addEventListener('scroll', scrollHandler);
+    window.addEventListener("scroll", scrollHandler);
 
     return () => {
-      window.removeEventListener('scroll', scrollHandler);
+      window.removeEventListener("scroll", scrollHandler);
     };
   }, [showActionButtons]);
 
@@ -80,13 +78,13 @@ const Table = ({
   };
 
   const handleInputBlur = (type, _key) => {
-    if (type === 'VALUE') {
+    if (type === "VALUE") {
       const oldDataIndex = data.findIndex(([key]) => key === _key);
       console.log(storageType, _key, editedValue, oldDataIndex);
       handleAddItem(storageType, _key, editedValue, {
         isUpdateFlow: true,
         updateIndex: oldDataIndex,
-        checkDuplicateKey: false,
+        checkDuplicateKey: false
       });
     } else {
       const newKey = editedValue;
@@ -95,11 +93,11 @@ const Table = ({
       handleAddItem(storageType, newKey, newKeyValue, {
         isUpdateFlow: true,
         updateIndex: oldDataIndex,
-        deleteKey: _key,
+        deleteKey: _key
       });
     }
-    setEditedIndex('');
-    setEditedValue('');
+    setEditedIndex("");
+    setEditedValue("");
   };
 
   const handleInputChange = (event) => {
@@ -115,15 +113,15 @@ const Table = ({
   const onPointerHandler = (val) => {
     if (!isMobile) {
       setShowActionButtons(val);
-      if (!val) setCopying('');
+      if (!val) setCopying("");
     }
   };
 
-  const handleCopy = useCallback((key, value) => {
+  const handleCopy = React.useCallback((key, value) => {
     copyContent([[key, value]]);
     setCopying(key);
     setTimeout(() => {
-      setCopying((v) => (v ? '' : v));
+      setCopying((v) => (v ? "" : v));
     }, 1500);
   }, []);
 
@@ -140,7 +138,7 @@ const Table = ({
               className="border-b border-transparent sm:border-slate-200 px-1 py-0.5 text-left sm:p-4 text-slate-800 dark:text-slate-400"
               onDoubleClick={() => handleDoubleClick(`key_${key}`, key)}
               onPointerEnter={() => onPointerHandler(`${key}`)}
-              onPointerLeave={() => onPointerHandler('')}
+              onPointerLeave={() => onPointerHandler("")}
               onClick={() => onRowClickHandler(`${key}`)}
             >
               {editedIndex === `key_${key}` ? (
@@ -148,7 +146,7 @@ const Table = ({
                   autofocus
                   value={editedValue}
                   onChange={handleInputChange}
-                  onBlur={() => handleInputBlur('KEY', key)}
+                  onBlur={() => handleInputBlur("KEY", key)}
                 />
               ) : (
                 key
@@ -158,7 +156,7 @@ const Table = ({
               className="relative border-b border-slate-200 mb-2 sm:mb-0 text-left px-1 py-0.5 sm:p-4 text-slate-800 dark:text-slate-400 overflow-hidden"
               onDoubleClick={() => handleDoubleClick(`value_${key}`, value)}
               onPointerEnter={() => onPointerHandler(`${key}`)}
-              onPointerLeave={() => onPointerHandler('')}
+              onPointerLeave={() => onPointerHandler("")}
               onClick={() => onRowClickHandler(`${key}`)}
             >
               {editedIndex === `value_${key}` ? (
@@ -166,12 +164,12 @@ const Table = ({
                   autofocus
                   value={editedValue}
                   onChange={handleInputChange}
-                  onBlur={() => handleInputBlur('VALUE', key)}
+                  onBlur={() => handleInputBlur("VALUE", key)}
                 />
               ) : (
                 <TableRow value={value} />
               )}
-              {showActionButtons === `${key}` && editedIndex === '' && (
+              {showActionButtons === `${key}` && editedIndex === "" && (
                 <div className="absolute z-10 bottom-1 sm:bottom-3 right-0 flex gap-1">
                   <div
                     className="p-1.5 bg-slate-200 rounded-md"
@@ -190,7 +188,7 @@ const Table = ({
                   >
                     <img
                       src={copying === key ? checkIcon : copyIcon}
-                      className={copying === key ? 'animate-copy' : ''}
+                      className={copying === key ? "animate-copy-button" : ""}
                       key="check"
                       width={17}
                       height={17}

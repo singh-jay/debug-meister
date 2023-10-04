@@ -37,10 +37,10 @@
 // 	});
 console.log(process.env.NODE_ENV);
 const cssLoaderPlugin = {
-  name: 'CSS Loader',
+  name: "CSS Loader",
   setup: (build) =>
     build.onLoad({ filter: /\.css$/ }, async ({ path: cssFilePath }) => {
-      console.log('cssFilePath');
+      console.log("cssFilePath");
       // const cssText = await fs.readFile(cssFilePath, "utf8")
       // const minifiedCss = minifyCss(cssText)
       //   .replaceAll("`", "\\`")
@@ -48,45 +48,45 @@ const cssLoaderPlugin = {
       // const cssId = md5(cssFilePath) // generate style tag id from file path so that it will be consistent
       // const contents = `if(!document.getElementById('${cssId}')){const s=document.createElement("style");s.id='${cssId}';s.textContent=\`${minifiedCss}\`;document.head.append(s)}`
       const contents = `let link = document.createElement('link'); link.rel = 'stylesheet';link.href = '${cssFilePath}';document.head.appendChild(link)`;
-      return { contents, loader: 'js' };
-    }),
+      return { contents, loader: "js" };
+    })
 };
-const __prod__ = process.env.NODE_ENV === 'production';
-import { build } from 'esbuild';
-import { sassPlugin } from 'esbuild-sass-plugin';
-import postcss from 'postcss';
-import autoprefixer from 'autoprefixer';
-import tailwindcss from 'tailwindcss';
-import tailwindConfig from './tailwind.config';
-import pkg from './package.json';
-const entryFile = 'src/index.js';
+const __prod__ = process.env.NODE_ENV === "production";
+import { build } from "esbuild";
+import { sassPlugin } from "esbuild-sass-plugin";
+import postcss from "postcss";
+import autoprefixer from "autoprefixer";
+import tailwindcss from "tailwindcss";
+import tailwindConfig from "./tailwind.config.mjs";
+import pkg from "./package.json";
+const entryFile = "src/index.js";
 const shared = {
   bundle: true,
   entryPoints: [entryFile],
   // Treat all dependencies in package.json as externals to keep bundle size to a minimum
   // external: Object.keys(pkg.peerDependencies),
-  logLevel: 'info',
+  logLevel: "info",
   minify: false,
   sourcemap: true,
-  loader: { '.svg': 'file', '.js': 'jsx' },
+  loader: { ".svg": "file", ".js": "jsx" },
   jsxDev: !__prod__,
-  jsx: 'automatic',
-  jsxFragment: 'Fragment',
+  jsx: "automatic",
+  jsxFragment: "Fragment",
   metafile: true,
   plugins: [
     sassPlugin({
       async transform(source, resolveDir) {
         const { css } = await postcss([
           tailwindcss(tailwindConfig),
-          autoprefixer,
+          autoprefixer
         ]).process(source, {
-          from: undefined,
+          from: undefined
         });
         return css;
-      },
+      }
     }),
-    cssLoaderPlugin,
-  ],
+    cssLoaderPlugin
+  ]
 };
 
 // build({
@@ -108,21 +108,21 @@ const result = await Bun.build({
   entryPoints: [entryFile],
   // Treat all dependencies in package.json as externals to keep bundle size to a minimum
   // external: Object.keys(pkg.peerDependencies),
-  logLevel: 'info',
+  logLevel: "info",
   minify: false,
-  sourcemap: 'external',
+  sourcemap: "external",
   // loader: { '.svg': 'file', '.js': 'jsx' },
   jsxDev: !__prod__,
-  jsx: 'automatic',
-  jsxFragment: 'Fragment',
-  format: 'esm',
+  jsx: "automatic",
+  jsxFragment: "Fragment",
+  format: "esm",
   // outfile: './out/index.mjs',
-  outdir: './out',
+  outdir: "./out",
   splitting: true,
-  target: 'browser',
+  target: "browser"
 });
 if (!result.success) {
-  console.error('Build failed');
+  console.error("Build failed");
   for (const message of result.logs) {
     // Bun will pretty print the message object
     console.error(message);

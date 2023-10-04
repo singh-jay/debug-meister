@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import * as React from 'react';
 
 import JSONFormatter from 'json-formatter-js';
 import { parseJSONValue } from '../utils';
@@ -9,9 +9,9 @@ const TableRow = ({
   parseJSON = true,
   open = 0,
 }) => {
-  const renderRef = useRef(null);
+  const renderRef = React.useRef(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (renderRef.current) {
       const formatter = new JSONFormatter(
         parseJSONValue(value, parseJSON),

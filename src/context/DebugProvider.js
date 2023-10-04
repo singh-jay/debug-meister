@@ -1,41 +1,66 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { DebugContext } from './DebugContext';
-import withNetworkLogger from '../components/HOC/withNetworkLogger';
-import DebugOverlay from '../components/DebugOverlay';
+import * as React from "react";
 
-const Child = ({ children }) => (
+import DebugOverlay from "../components/DebugOverlay";
+import withNetworkLogger from "../components/HOC/withNetworkLogger";
+import { DebugContext } from "./DebugContext";
+
+const Child = ({ children, ...restProps }) => (
   <>
-    <DebugOverlay />
+    <DebugOverlay {...restProps} />
     {children}
   </>
 );
 
 const WrappedComponent = withNetworkLogger(Child);
 
-const DebugProvider = ({ children }) => {
-  const [mounted, setMounted] = useState(false);
-  const [networkRequests, setNetworkRequests] = useState([]);
+const DebugProvider = ({ children, ...restProps }) => {
+  // const [mounted, setMounted] = React.useState(false);
+  const [networkRequests, setNetworkRequests] = React.useState([]);
+  const [consoleLogs, setConsoleLogs] = React.useState([]);
 
-  const addNetworkRequest = useCallback((request) => {
+  const memoisedNetworkRequests = React.useMemo(
+    () => networkRequests,
+    [networkRequests]
+  );
+
+  const memoisedConsoleLogs = React.useMemo(() => consoleLogs, [consoleLogs]);
+
+  const addNetworkRequest = React.useCallback((request) => {
     setNetworkRequests((prevNetworkRequests) => [
       ...prevNetworkRequests,
-      request,
+      request
     ]);
   }, []);
 
-  const clearNetworkRequests = useCallback(() => {
+  const clearNetworkRequests = React.useCallback(() => {
     setNetworkRequests([]);
   }, []);
 
-  useEffect(() => setMounted(true), []);
+  const addConsoleLog = React.useCallback((log) => {
+    // console.debug("console add", log);
+    setConsoleLogs((prevConsoleLogs) => [...prevConsoleLogs, log]);
+  }, []);
 
-  if (!mounted) return children;
+  const clearConsoleLogs = React.useCallback(() => {
+    setConsoleLogs([]);
+  }, []);
+
+  // React.useEffect(() => setMounted(true), []);
+
+  // if (!mounted) return children;
 
   return (
     <DebugContext.Provider
-      value={{ networkRequests, addNetworkRequest, clearNetworkRequests }}
+      value={{
+        networkRequests: memoisedNetworkRequests,
+        addNetworkRequest,
+        clearNetworkRequests,
+        consoleLogs: memoisedConsoleLogs,
+        addConsoleLog,
+        clearConsoleLogs
+      }}
     >
-      <WrappedComponent>{children}</WrappedComponent>
+      <WrappedComponent {...restProps}>{children}</WrappedComponent>
     </DebugContext.Provider>
   );
 };

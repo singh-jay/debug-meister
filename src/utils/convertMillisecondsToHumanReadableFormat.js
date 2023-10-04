@@ -1,15 +1,15 @@
 export default function convertMillisecondsToHumanReadableFormat(milliseconds) {
-  let unit = 'milliseconds';
+  let unit = 'ms';
 
   if (milliseconds >= 1000) {
     milliseconds /= 1000;
-    unit = 'seconds';
+    unit = 's';
   } else if (milliseconds >= 60 * 1000) {
     milliseconds /= 60 * 1000;
-    unit = 'minutes';
+    unit = 'm';
   } else if (milliseconds >= 3600 * 1000) {
     milliseconds /= 3600 * 1000;
-    unit = 'hours';
+    unit = 'h';
   }
 
   return milliseconds.toFixed(2) + ' ' + unit;

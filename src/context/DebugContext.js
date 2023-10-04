@@ -1,5 +1,5 @@
-import { createContext, useContext } from 'react';
+import * as React from 'react';
 
-export const DebugContext = createContext({});
+export const DebugContext = React.createContext({});
 
-export const useDebugContext = () => useContext(DebugContext);
+export const useDebugContext = () => React.useContext(DebugContext);
