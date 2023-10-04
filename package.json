@@ -1,6 +1,6 @@
 {
   "name": "debug-meister",
-  "version": "0.1.28",
+  "version": "0.1.29",
   "private": false,
   "main": "dist/cjs/index.cjs",
   "module": "dist/legacy-esm/index.js",

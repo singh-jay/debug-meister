@@ -35,25 +35,6 @@ yarn add debug-meister --dev
 **React App:**
 
 ```jsx
-// context/DebugProvider.js
-
-import { Suspense, lazy } from 'react';
-
-const DebugContextProvider = lazy(() =>
-  import(/* webpackChunkName: "DebugProviderChunk" */ 'debug-meister'),
-);
-
-const __dev__ = process.env.NODE_ENV !== 'production';
-
-export default function DebugProvider({ children }) {
-  return __dev__ ? (
-    <Suspense fallback={<p>Loading...</p>}>
-      <DebugContextProvider>{children}</DebugContextProvider>
-    </Suspense>
-  ) : (
-    children
-  );
-}
 
 // index.js
 
@@ -62,7 +43,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.js';
 import './index.css';
 
-import DebugProvider from './context/DebugProvider';
+import { DebugProvider } from "debug-meister";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -76,26 +57,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 **Next.js App Router:**
 
 ```jsx
-// context/DebugProvider.js
-
-"use client";
-
-import dynamic from "next/dynamic";
-
-const DebugContextProvider = dynamic(
-  () => import(/* webpackChunkName: "DebugProviderChunk" */ "debug-meister"),
-  { ssr: false, loading: () => <p>Loading...</p> }
-);
-
-const __dev__ = process.env.NODE_ENV !== "production";
-
-export default function DebugProvider({ children }) {
-  return __dev__ ? <DebugContextProvider>{children}</DebugContextProvider> : children;
-}
 
 // app/layout.js
 
-import DebugProvider from "./context/DebugProvider";
+import { DebugProvider } from "debug-meister";
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -117,24 +82,9 @@ export default function RootLayout({
 **Next.js Pages Directory:**
 
 ```jsx
-// context/DebugProvider.js
-
-import dynamic from "next/dynamic";
-
-const DebugContextProvider = dynamic(
-  () => import(/* webpackChunkName: "DebugProviderChunk" */ "debug-meister"),
-  { ssr: false, loading: () => <p>Loading...</p> }
-);
-
-const __dev__ = process.env.NODE_ENV !== "production";
-
-export default function DebugProvider({ children }) {
-  return __dev__ ? <DebugContextProvider>{children}</DebugContextProvider> : children;
-}
-
 // pages/_app.js
 
-import DebugProvider from "./context/DebugProvider";
+import { DebugProvider } from "debug-meister";
 
 export default function App({ Component, pageProps }) {
   return (
